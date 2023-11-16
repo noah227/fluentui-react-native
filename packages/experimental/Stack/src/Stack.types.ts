@@ -1,6 +1,9 @@
-import { StackItemProps } from './StackItem/StackItem.types';
-import { ViewStyle, ViewProps } from 'react-native';
-import { IBorderTokens, FontTokens } from '@fluentui-react-native/tokens';
+import type { ViewStyle, ViewProps, ColorValue, DimensionValue } from 'react-native';
+
+import type { Spacing } from '@fluentui-react-native/framework';
+import type { IBorderTokens, FontTokens } from '@fluentui-react-native/tokens';
+
+import type { StackItemProps } from './StackItem/StackItem.types';
 
 export const stackName = 'Stack';
 
@@ -14,6 +17,8 @@ export interface StackStatics {
   Item: React.FunctionComponent<StackItemProps>;
 }
 
+type SpacingGapValue = `${number}px` | `${number}` | keyof Spacing;
+
 /**
  * Tokens from fabric.  Right now they are embedded in the props pending discussions of whether tokens: {} is
  * the right approach
@@ -24,22 +29,22 @@ export interface StackTokenProps {
    * The property is specified as a value for 'row gap', followed optionally by a value for 'column gap'.
    * If 'column gap' is omitted, it's set to the same value as 'row gap'.
    */
-  childrenGap?: number | string;
+  childrenGap?: number | SpacingGapValue | `${SpacingGapValue} ${SpacingGapValue}`;
 
   /**
    * Defines a maximum height for the Stack.
    */
-  maxHeight?: number | string;
+  maxHeight?: DimensionValue;
 
   /**
    * Defines a maximum width for the Stack.
    */
-  maxWidth?: number | string;
+  maxWidth?: DimensionValue;
 
   /**
    * Defines the padding to be applied to the Stack contents relative to its border.
    */
-  padding?: number | string;
+  padding?: number | `${number}px` | keyof Spacing;
 
   /**
    * Defines whether to render Stack children horizontally.
@@ -91,7 +96,8 @@ export interface StackTokenProps {
   wrap?: boolean;
 
   /**
-   * Gap between items, multiplied by theme gap spacing
+   * Gap between items, multiplied by theme gap spacing.
+   * Does not work while running Chakra for reasons specific to that engine (refer to https://github.com/microsoft/fluentui-react-native/issues/767)
    */
   gap?: number;
 }
@@ -100,7 +106,7 @@ export interface StackTokens extends FontTokens, IBorderTokens, StackTokenProps 
   /**
    * background color for the stack
    */
-  backgroundColor?: string;
+  backgroundColor?: ColorValue;
 }
 
 /**

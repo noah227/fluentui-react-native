@@ -1,13 +1,11 @@
 module.exports = {
-  extends: ['plugin:react/recommended', 'plugin:@typescript-eslint/recommended'],
-  parser: '@typescript-eslint/parser',
+  extends: ['plugin:@rnx-kit/recommended'],
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
+    project: ['./tsconfig.json', 'apps/*/tsconfig.json', 'packages/*/*/tsconfig.json'],
   },
-  plugins: ['@typescript-eslint'],
   rules: {
+    '@rnx-kit/no-const-enum': 'error',
+    '@rnx-kit/no-export-all': ['error', { expand: 'external-only' }],
     '@typescript-eslint/consistent-type-assertions': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
@@ -16,9 +14,17 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
-    'no-undef': 'off',
+    '@typescript-eslint/consistent-type-exports': 'error',
     'no-prototype-builtins': 'off',
+    'no-undef': 'off',
     'react/display-name': 'off',
-    'react/prop-types': 0,
   },
+  overrides: [
+    {
+      files: '**/src/index.{js,ts,tsx}',
+      rules: {
+        '@rnx-kit/no-export-all': ['error', { expand: 'all' }],
+      },
+    },
+  ],
 };

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { findNodeHandle, NativeModules } from 'react-native';
-import { IViewWin32 } from '@office-iss/react-native-win32';
+import { findNodeHandle, UIManager } from 'react-native';
 
-const setAndForwardRef = require('./setAndForwardRef');
+import type { ViewWin32 } from '@office-iss/react-native-win32';
 
-export type IFocusable = IViewWin32;
+import { setAndForwardRef } from './setAndForwardRef';
+
+export type IFocusable = ViewWin32;
 /**
  * A hook to add an imperative focus method to functional components which simply dispatch a focus command to
  * something View-derived on the native side.  In practice, this effectively applies to all components in our Win32
@@ -13,17 +14,17 @@ export type IFocusable = IViewWin32;
  * @returns The inner View-type you're rendering that you want to dispatch to & focus on.
  */
 export function useViewCommandFocus(
-  forwardedRef: React.Ref<IViewWin32 | null> | undefined,
+  forwardedRef: React.Ref<ViewWin32 | null> | undefined,
   // initialValue?: React.Component
 ): (ref: React.ElementRef<any>) => void {
   /**
-  * Set up the forwarding ref to enable adding the focus method.
-  */
-  const focusRef = React.useRef<React.Component>();
+   * Set up the forwarding ref to enable adding the focus method.
+   */
+  const focusRef = React.useRef<any>();
 
   const _setNativeRef = setAndForwardRef({
     getForwardedRef: () => forwardedRef,
-    setLocalRef: localRef => {
+    setLocalRef: (localRef: any) => {
       focusRef.current = localRef;
 
       /**
@@ -31,15 +32,10 @@ export function useViewCommandFocus(
        */
       if (localRef) {
         localRef.focus = () => {
-          NativeModules.UIManager.dispatchViewManagerCommand(
-            findNodeHandle(localRef),
-            NativeModules.UIManager.getViewManagerConfig('RCTView').Commands.focus,
-            null
-          );
+          UIManager.dispatchViewManagerCommand(findNodeHandle(localRef), UIManager.getViewManagerConfig('RCTView').Commands.focus, null);
         };
       }
     },
   });
   return _setNativeRef;
 }
-

@@ -1,8 +1,10 @@
+import type { TextProps } from 'react-native';
+
+import type { Theme } from '@fluentui-react-native/framework';
 import { styleFunction } from '@uifabricshared/foundation-tokens';
-import { TextProps } from 'react-native';
-import { IPersonaCoinTokens } from './PersonaCoin.types';
-import { ITheme } from '@uifabricshared/theming-ramp';
+
 import { calculateEffectiveSizes } from './PersonaCoin.helpers';
+import type { IPersonaCoinTokens } from './PersonaCoin.types';
 
 const _initialsKeyProps: (keyof IPersonaCoinTokens)[] = ['coinSize', 'initialsSize', 'size'];
 
@@ -11,9 +13,9 @@ function _buildInitialsStyles(tokenProps: IPersonaCoinTokens /*, theme: ITheme *
 
   return {
     style: {
-      fontSize: initialsSize
-    }
+      fontSize: initialsSize,
+    },
   };
 }
 
-export const buildInitialsStyles = styleFunction<TextProps, IPersonaCoinTokens, ITheme>(_buildInitialsStyles, _initialsKeyProps);
+export const buildInitialsStyles = styleFunction<TextProps, IPersonaCoinTokens, Theme>(_buildInitialsStyles, _initialsKeyProps);

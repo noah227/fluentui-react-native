@@ -1,12 +1,14 @@
-import { Alignment, IStackTokens } from './Stack.types';
-import { parseGap, parsePadding } from './StackUtils';
-import { ViewStyle, ViewProps } from 'react-native';
-import { ITheme } from '@uifabricshared/theming-ramp';
+import type { ViewStyle, ViewProps } from 'react-native';
+
+import type { Theme } from '@fluentui-react-native/framework';
 import { styleFunction } from '@uifabricshared/foundation-tokens';
+
+import type { Alignment, IStackTokens } from './Stack.types';
+import { parseGap, parsePadding } from './StackUtils';
 
 const nameMap: { [key: string]: Alignment } = {
   start: 'flex-start',
-  end: 'flex-end'
+  end: 'flex-end',
 };
 
 function _mapAlignment(horizontal: boolean, horizontalAlign: Alignment, verticalAlign: Alignment, style: ViewStyle): void {
@@ -29,49 +31,44 @@ const _innerKeyProps: (keyof IStackTokens)[] = [
   'verticalAlign',
   // 'disableShrink',
   'childrenGap',
-  'padding'
+  'padding',
 ];
 
-function _buildInnerStyles(tokenProps: IStackTokens, theme: ITheme): ViewProps {
+function _buildInnerStyles(tokenProps: IStackTokens, theme: Theme): ViewProps {
   const { horizontal, wrap, horizontalAlign, verticalAlign, padding } = tokenProps;
 
   let innerStyle: ViewStyle | undefined = undefined;
   const childrenGap = tokenProps.childrenGap || tokenProps.gap;
   const { rowGap, columnGap } = parseGap(childrenGap, theme);
-  const horizontalMargin = `${-0.5 * columnGap.value}${columnGap.unit}`;
-  const verticalMargin = `${-0.5 * rowGap.value}${rowGap.unit}`;
 
   if (wrap) {
     innerStyle = {
-      marginLeft: horizontalMargin,
-      marginRight: horizontalMargin,
-      marginTop: verticalMargin,
-      marginBottom: verticalMargin,
+      rowGap: rowGap,
+      columnGap: columnGap,
       padding: parsePadding(padding, theme),
-      width: columnGap.value === 0 ? '100%' : `calc(100% + ${columnGap.value}${columnGap.unit})`
+      width: '100%',
     };
     _mapAlignment(!!horizontal, horizontalAlign, verticalAlign, innerStyle);
-    const heightToSet = rowGap.value === 0 ? '100%' : `calc(100% + ${rowGap.value}${rowGap.unit})`;
     if (horizontal) {
-      innerStyle.height = heightToSet;
+      innerStyle.height = '100%';
     } else {
-      innerStyle.maxHeight = heightToSet;
-      innerStyle.height = `calc(100% + ${rowGap.value}${rowGap.unit})`;
+      innerStyle.maxHeight = '100%';
+      innerStyle.height = '100%';
     }
   }
   return { style: innerStyle };
 }
 
-export const buildStackInnerStyles = styleFunction<ViewProps, IStackTokens, ITheme>(_buildInnerStyles, _innerKeyProps);
+export const buildStackInnerStyles = styleFunction<ViewProps, IStackTokens, Theme>(_buildInnerStyles, _innerKeyProps);
 
-function _buildRootStyles(tokenProps: IStackTokens, theme: ITheme): ViewProps {
+function _buildRootStyles(tokenProps: IStackTokens, theme: Theme): ViewProps {
   const { grow, horizontal, horizontalAlign, verticalAlign, maxHeight, maxWidth, padding, wrap } = tokenProps;
   // const childrenGap = tokenProps.childrenGap || tokenProps.gap;
   // const { rowGap, columnGap } = parseGap(childrenGap, theme);
 
   const rootStyle: ViewStyle = {
     maxHeight,
-    maxWidth
+    maxWidth,
   };
   _mapAlignment(!!horizontal, horizontalAlign, verticalAlign, rootStyle);
   if (grow && !wrap) {
@@ -100,7 +97,7 @@ const _keyProps: (keyof IStackTokens)[] = [
   // 'childrenGap',
   'maxHeight',
   'maxWidth',
-  'padding'
+  'padding',
 ];
 
-export const buildStackRootStyles = styleFunction<ViewProps, IStackTokens, ITheme>(_buildRootStyles, _keyProps);
+export const buildStackRootStyles = styleFunction<ViewProps, IStackTokens, Theme>(_buildRootStyles, _keyProps);

@@ -1,4 +1,4 @@
-import { ColorValue } from './Color.types';
+import type { ColorValue } from 'react-native';
 
 export interface OfficePalette {
   /**

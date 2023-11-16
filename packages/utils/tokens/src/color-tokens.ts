@@ -1,22 +1,24 @@
-import { ITheme, IThemeColorDefinition } from '@uifabricshared/theming-ramp';
-import { IOperationSet } from '@uifabricshared/foundation-tokens';
-import { ColorValue } from 'react-native';
+import type { ColorValue } from 'react-native';
+
+import type { Theme, ThemeColorDefinition } from '@fluentui-react-native/theme-types';
+
+import type { OperationSet } from './token.types';
 
 export interface IForegroundColorTokens {
   color?: ColorValue;
 }
 
-export const getPaletteFromTheme = (theme: ITheme): IThemeColorDefinition => {
+export const getPaletteFromTheme = (theme: Theme): ThemeColorDefinition => {
   return theme.colors;
 };
 
-export const foregroundColorTokens: IOperationSet<IForegroundColorTokens, ITheme> = [{ source: 'color', lookup: getPaletteFromTheme }];
+export const foregroundColorTokens: OperationSet<IForegroundColorTokens, Theme> = [{ source: 'color', lookup: getPaletteFromTheme }];
 
 export interface IBackgroundColorTokens {
   backgroundColor?: ColorValue;
 }
 
-export const backgroundColorTokens: IOperationSet<IBackgroundColorTokens, ITheme> = [
+export const backgroundColorTokens: OperationSet<IBackgroundColorTokens, Theme> = [
   { source: 'backgroundColor', lookup: getPaletteFromTheme },
 ];
 

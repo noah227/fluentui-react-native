@@ -1,0 +1,527 @@
+{
+  "name": "@fluentui-react-native/experimental-appearance-additions",
+  "entries": [
+    {
+      "date": "Thu, 09 Nov 2023 02:39:08 GMT",
+      "version": "0.6.0",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.6.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "4a6a9cd63396c6e8fc6ffbfec7137652928e40ef",
+            "comment": "Update to react-native 0.72"
+          },
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.12.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 07 Nov 2023 20:20:33 GMT",
+      "version": "0.5.12",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.12",
+      "comments": {
+        "patch": [
+          {
+            "author": "safreibe@microsoft.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "252935c886c6ffba5fd30593e63cbce4f61f7a90",
+            "comment": "Manually bump packages stuck in the pipeline"
+          },
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.11.10",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 30 Oct 2023 21:26:06 GMT",
+      "version": "0.5.10",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.10",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.11.8",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 25 Oct 2023 20:50:34 GMT",
+      "version": "0.5.9",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.9",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.11.7",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 29 Aug 2023 22:56:32 GMT",
+      "version": "0.5.8",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.8",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.11.6",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 14 Aug 2023 20:14:41 GMT",
+      "version": "0.5.7",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.11.5",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 09 Aug 2023 22:02:15 GMT",
+      "version": "0.5.6",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.11.4",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 31 Jul 2023 19:29:59 GMT",
+      "version": "0.5.5",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.11.3",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 18 Jul 2023 19:09:32 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.4",
+      "version": "0.5.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.11.2",
+            "commit": "225d20784228abaa4b80bd12b57d2c6972d9abd4"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 07 Jul 2023 20:45:12 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.3",
+      "version": "0.5.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.11.1",
+            "commit": "d2f6f8d12972593821ec0e2764953efd6dafb1a2"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 12 Jun 2023 17:46:44 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.2",
+      "version": "0.5.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.11.0",
+            "commit": "6530042f4f24cbb296337a8bcf5fb32a09cc6378"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 09 Jun 2023 15:29:07 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.1",
+      "version": "0.5.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "4123478+tido64@users.noreply.github.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "f790d0b4bdd65cd38d57349e97b57d782a32347c",
+            "comment": "Fix package using `use-subscription` at runtime but does not correctly declare dependencies"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 05 Jun 2023 19:26:22 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.5.0",
+      "version": "0.5.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "sanajmi@microsoft.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "8c0f9d27e34913da82c00299c12c399877257325",
+            "comment": "Upgrade to React Native 0.71"
+          },
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.10.0",
+            "commit": "8c0f9d27e34913da82c00299c12c399877257325"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 30 May 2023 20:34:15 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.4.2",
+      "version": "0.4.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.9.10",
+            "commit": "09fa3b65fd9d29f4dc4769e1e479fb5a82812979"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 03 May 2023 07:08:52 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.4.1",
+      "version": "0.4.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.9.9",
+            "commit": "52a53e376865d500b73f26ea9935e13036b04b1a"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 10 Apr 2023 16:10:16 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.4.0",
+      "version": "0.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "78454019+lyzhan7@users.noreply.github.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "de537fb81d0da93ee744c5d26247729d7982a453",
+            "comment": "Add trait collection support for multiwindow"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 21 Mar 2023 21:53:46 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.3.9",
+      "version": "0.3.9",
+      "comments": {
+        "patch": [
+          {
+            "author": "krsiler@microsoft.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "e706a7afbd63d528878eadd179d5a91210ed62f6",
+            "comment": "Trigger manual bump (no changes)"
+          },
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.9.8",
+            "commit": "e706a7afbd63d528878eadd179d5a91210ed62f6"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 18 Mar 2023 17:22:31 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.3.8",
+      "version": "0.3.8",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.9.7",
+            "commit": "601309349ca2bc18780a3fb71c59337f7c26f9bf"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 14 Mar 2023 20:50:45 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.3.7",
+      "version": "0.3.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.9.6",
+            "commit": "b2d39b11dbaa12600bd96a9d54e0ebd013d9597f"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 07 Mar 2023 20:54:15 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.3.6",
+      "version": "0.3.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.9.5",
+            "commit": "6c33cfe45061ab74b7eee11b78341c74f88f9473"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 03 Mar 2023 06:47:26 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.3.5",
+      "version": "0.3.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.9.4",
+            "commit": "4659b74650377d2f746a81a321346a481816a5af"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 24 Feb 2023 20:39:58 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.3.4",
+      "version": "0.3.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "78454019+lyzhan7@users.noreply.github.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "743bd1507af336a62946361f3fe3c800ae5bd4c2",
+            "comment": "Order imports"
+          },
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.9.3",
+            "commit": "743bd1507af336a62946361f3fe3c800ae5bd4c2"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 24 Feb 2023 02:22:40 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.3.3",
+      "version": "0.3.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.9.2",
+            "commit": "a266ece54bfecbd7edd912a26f46dae655bf48ef"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 22 Feb 2023 20:36:09 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.3.2",
+      "version": "0.3.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "78454019+lyzhan7@users.noreply.github.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "6e9df161e484ad940eb26832701b3762518dd665",
+            "comment": "Create method to initialize trait collection from root view"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 11 Feb 2023 01:32:30 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.3.1",
+      "version": "0.3.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.9.1",
+            "commit": "271dc7378669e31e355a4ca8f131a96872d8049a"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 08 Feb 2023 01:38:39 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.3.0",
+      "version": "0.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "78454019+lyzhan7@users.noreply.github.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "da95fca5314190f415c8f2b1b853533689dc345b",
+            "comment": "Add ability to get accessibilityContrast from traitcollection"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 03 Feb 2023 01:49:36 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.2.4",
+      "version": "0.2.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.9.0",
+            "commit": "83735cdac7bd038933e31191400008b3187e3eb1"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 02 Feb 2023 01:29:38 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.2.3",
+      "version": "0.2.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "ac679ca51704ba5c2d2cc2385a71694b69735a1d",
+            "comment": "Add eslint to packages missing a config"
+          },
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.8.39",
+            "commit": "8babef935750d57271f466a1c446e6531ee1b0a5"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 01 Feb 2023 22:33:17 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.2.2",
+      "version": "0.2.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.8.38",
+            "commit": "2d0138c80d7512b905fcf32583760bec2b911910"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 30 Jan 2023 15:17:30 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.2.1",
+      "version": "0.2.1",
+      "comments": {
+        "none": [
+          {
+            "author": "4123478+tido64@users.noreply.github.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "4de4c2b37c835ebd9af015ff767f9dd68452f786",
+            "comment": "Migrate to align-deps"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 30 Jan 2023 07:12:38 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.2.1",
+      "version": "0.2.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "mischreiber@microsoft.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "f6f403b2efe86a229448a618b043601ceefd9a5f",
+            "comment": "Add `darkElevated` theme"
+          },
+          {
+            "author": "beachball",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "comment": "Bump @fluentui-react-native/framework to v0.8.37",
+            "commit": "f6f403b2efe86a229448a618b043601ceefd9a5f"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 26 Jan 2023 17:47:06 GMT",
+      "tag": "@fluentui-react-native/experimental-appearance-additions_v0.2.0",
+      "version": "0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "mischreiber@microsoft.com",
+            "package": "@fluentui-react-native/experimental-appearance-additions",
+            "commit": "6b1449d565c2e0597204e4a8cfb2355e34c01fc7",
+            "comment": "Adding a new native module, `AppearanceAdditions`"
+          }
+        ]
+      }
+    }
+  ]
+}

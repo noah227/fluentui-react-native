@@ -18,6 +18,8 @@ pids
 # Xcode
 *.xcuserstate
 **/.DS_Store
+**/DerivedData/*
+
 
 # CocoaPods
 **/Pods/*
@@ -83,9 +85,6 @@ typings/
 # dotenv environment variables file
 .env
 
-# next.js build output
-.next
-
 # document generation directory
 .docz
 
@@ -94,3 +93,23 @@ typings/
 
 # Generated Nuget Package
 *.nupkg
+
+# VS Code debugging
+.vscode/.react/
+apps/*/.vscode/.react/
+
+# Visual Studio
+.vs/
+
+# Ignore Gradle build output directory
+**/android/**/build
+
+# Yarn
+
+.pnp.*
+**/.yarn/*
+!**/.yarn/patches
+!**/.yarn/plugins
+!**/.yarn/releases
+!**/.yarn/sdks
+!**/.yarn/versions

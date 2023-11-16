@@ -1,5 +1,7 @@
-import { contextualMenuName, ContextualMenuType } from './ContextualMenu.types';
-import { IComposeSettings } from '@uifabricshared/foundation-compose';
+import type { IComposeSettings } from '@uifabricshared/foundation-compose';
+
+import type { ContextualMenuType } from './ContextualMenu.types';
+import { contextualMenuName } from './ContextualMenu.types';
 
 export const settings: IComposeSettings<ContextualMenuType> = [
   {
@@ -10,16 +12,15 @@ export const settings: IComposeSettings<ContextualMenuType> = [
       borderWidth: 1,
       directionalHint: 'bottonLeftEdge',
       gapSpace: 0,
-      minPadding: 0
-    },
-    root: {
-      accessibilityRole: 'menu'
+      minPadding: 0,
     },
     container: {
       style: {
-        padding: 1
-      }
-    }
+        padding: 1,
+        minWidth: 180,
+        flex: 1,
+      },
+    },
   },
-  contextualMenuName
+  contextualMenuName,
 ];

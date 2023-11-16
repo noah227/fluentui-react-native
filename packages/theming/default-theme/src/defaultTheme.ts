@@ -1,27 +1,32 @@
-import { Theme, Typography, Spacing, FontWeightValue, FontSize, FontSizes, Variants } from '@fluentui-react-native/theme-types';
 import { Platform } from 'react-native';
-import { getStockWebPalette, getStockWebDarkPalette } from './defaultColors';
+
+import { globalTokens } from '@fluentui-react-native/theme-tokens';
+import type { Theme, Typography, Spacing, FontWeightValue, FontSize, FontSizes, Variants } from '@fluentui-react-native/theme-types';
+
+import { createShadowAliasTokens } from './createAliasTokens';
+import { getStockWebPalette, getStockWebDarkPalette, getStockWebHCPalette } from './defaultColors';
 
 function _defaultTypography(): Typography {
   const defaultsDict = {
     sizes: {
-      caption: 10 as FontSize,
-      secondary: 12 as FontSize,
-      body: 14 as FontSize,
-      subheader: 16 as FontSize,
-      header: 20 as FontSize,
-      hero: 28 as FontSize,
-      heroLarge: 42 as FontSize,
+      caption: globalTokens.font.size100 as FontSize,
+      secondary: globalTokens.font.size200 as FontSize,
+      body: globalTokens.font.size300 as FontSize,
+      subheader: globalTokens.font.size400 as FontSize,
+      header: globalTokens.font.size500 as FontSize,
+      hero: globalTokens.font.size700 as FontSize,
+      heroLarge: globalTokens.font.size900 as FontSize,
     } as FontSizes,
     weights: {
-      regular: '400' as FontWeightValue,
-      semiBold: '600' as FontWeightValue,
+      regular: globalTokens.font.weight.regular as FontWeightValue,
+      semiBold: globalTokens.font.weight.semibold as FontWeightValue,
     },
     families: {
       primary: 'Segoe UI',
-      secondary: 'System',
+      secondary: 'Segoe UI',
       cursive: 'System',
       monospace: 'System',
+      numeric: 'System',
       sansSerif: 'System',
       serif: 'System',
     },
@@ -39,6 +44,21 @@ function _defaultTypography(): Typography {
       heroSemibold: { face: 'primary', size: 'hero', weight: 'semiBold' },
       heroLargeStandard: { face: 'primary', size: 'heroLarge', weight: 'regular' },
       heroLargeSemibold: { face: 'primary', size: 'heroLarge', weight: 'semiBold' },
+      // mocked out
+      caption1: { face: 'primary', size: 'caption', weight: 'regular' },
+      caption1Strong: { face: 'primary', size: 'caption', weight: 'semiBold' },
+      body1: { face: 'primary', size: 'secondary', weight: 'regular' },
+      body1Strong: { face: 'primary', size: 'secondary', weight: 'semiBold' },
+      body2: { face: 'primary', size: 'body', weight: 'regular' },
+      body2Strong: { face: 'primary', size: 'body', weight: 'semiBold' },
+      subtitle1: { face: 'primary', size: 'header', weight: 'regular' },
+      subtitle1Strong: { face: 'primary', size: 'header', weight: 'semiBold' },
+      subtitle2: { face: 'primary', size: 'subheader', weight: 'regular' },
+      subtitle2Strong: { face: 'primary', size: 'subheader', weight: 'semiBold' },
+      title1: { face: 'primary', size: 'hero', weight: 'regular' },
+      title1Strong: { face: 'primary', size: 'hero', weight: 'semiBold' },
+      largeTitle: { face: 'primary', size: 'heroLarge', weight: 'regular' },
+      display: { face: 'primary', size: 'heroLarge', weight: 'semiBold' },
     } as Variants,
   };
 
@@ -48,40 +68,11 @@ function _defaultTypography(): Typography {
       secondary: 'System',
       cursive: 'System',
       monospace: 'System',
+      numeric: 'System',
       sansSerif: 'System',
       serif: 'System',
     };
     defaultsDict.families = familiesDictApple;
-  }
-
-  // In certain cases on win32, semibold font renders incorrectly so 'Segoe UI Semibold' is used
-  if (Platform.OS === ('win32' as any)) {
-    const familiesDictWin32 = {
-      primary: 'Segoe UI',
-      secondary: 'Segoe UI Semibold',
-      cursive: 'System',
-      monospace: 'System',
-      sansSerif: 'System',
-      serif: 'System',
-    };
-    defaultsDict.families = familiesDictWin32;
-
-    const variantsDictWin32 = {
-      captionStandard: { face: 'primary', size: 'caption', weight: 'regular' },
-      secondaryStandard: { face: 'primary', size: 'secondary', weight: 'regular' },
-      secondarySemibold: { face: 'secondary', size: 'secondary', weight: 'semiBold' },
-      bodyStandard: { face: 'primary', size: 'body', weight: 'regular' },
-      bodySemibold: { face: 'secondary', size: 'body', weight: 'semiBold' },
-      subheaderStandard: { face: 'primary', size: 'subheader', weight: 'regular' },
-      subheaderSemibold: { face: 'secondary', size: 'subheader', weight: 'semiBold' },
-      headerStandard: { face: 'primary', size: 'header', weight: 'regular' },
-      headerSemibold: { face: 'secondary', size: 'header', weight: 'semiBold' },
-      heroStandard: { face: 'primary', size: 'hero', weight: 'regular' },
-      heroSemibold: { face: 'secondary', size: 'hero', weight: 'semiBold' },
-      heroLargeStandard: { face: 'primary', size: 'heroLarge', weight: 'regular' },
-      heroLargeSemibold: { face: 'secondary', size: 'heroLarge', weight: 'semiBold' },
-    } as Variants;
-    defaultsDict.variants = variantsDictWin32;
   }
 
   return defaultsDict;
@@ -95,6 +86,7 @@ export const defaultFluentTheme: Theme = {
   colors: getStockWebPalette(),
   typography: _defaultTypography(),
   spacing: defaultSpacing(),
+  shadows: createShadowAliasTokens('light'),
   components: {},
   host: { appearance: 'light' },
 };
@@ -102,7 +94,17 @@ export const defaultFluentTheme: Theme = {
 export const defaultFluentDarkTheme: Theme = {
   colors: getStockWebDarkPalette(),
   typography: defaultFluentTheme.typography,
+  shadows: createShadowAliasTokens('dark'),
   spacing: defaultFluentTheme.spacing,
   components: {},
   host: { appearance: 'dark' },
+};
+
+export const defaultFluentHighConstrastTheme: Theme = {
+  colors: getStockWebHCPalette(),
+  typography: defaultFluentTheme.typography,
+  shadows: createShadowAliasTokens('highContrast'),
+  spacing: defaultFluentTheme.spacing,
+  components: {},
+  host: { appearance: 'highContrast' },
 };

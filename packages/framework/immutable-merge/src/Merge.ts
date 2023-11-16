@@ -44,7 +44,7 @@ export interface MergeOptions {
 const _builtinHandlers: { [K in BuiltinRecursionHandlers]: CustomRecursionHandler } = {
   appendArray: (...objs: any[]) => {
     return [].concat(...objs);
-  }
+  },
 };
 
 /**
@@ -99,7 +99,7 @@ function resolveForObject(option: RecursionHandler | RecursionOption | MergeOpti
 function getHandlerForPropertyOfType(
   config: MergeOptions,
   propKey: string,
-  propType: string
+  propType: string,
 ): CustomRecursionHandler | MergeOptions | undefined {
   let result: CustomRecursionHandler | MergeOptions | undefined = undefined;
   const option = config[propKey] !== undefined ? config[propKey] : config[propType] !== undefined ? config[propType] : undefined;
@@ -130,8 +130,9 @@ function getHandlerForPropertyOfType(
  * is true the routine will progress through all branches of the hierarchy.  Useful if using a processor function that needs to be run.
  * @param objs - an array of objects to merge together
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 function immutableMergeWorker<T extends object>(mergeOptions: RecursionOption | MergeOptions, singleMode: boolean, ...objs: T[]): T {
-  const setToMerge = objs.filter(v => v && getEntityType(v) === 'object' && Object.getOwnPropertyNames(v).length > 0);
+  const setToMerge = objs.filter((v) => v && getEntityType(v) === 'object' && Object.getOwnPropertyNames(v).length > 0);
   const [options, mightRecurse] = normalizeOptions(mergeOptions);
   const processSingle = singleMode && setToMerge.length === 1;
 
@@ -149,7 +150,7 @@ function immutableMergeWorker<T extends object>(mergeOptions: RecursionOption | 
           const entityType = getEntityType(originalVal);
           const handler = getHandlerForPropertyOfType(options, key, entityType);
           if (handler !== undefined) {
-            const values = setToMerge.map(set => set[key]).filter(v => v !== undefined);
+            const values = setToMerge.map((set) => set[key]).filter((v) => v !== undefined);
             const updatedVal = typeof handler === 'function' ? handler(...values) : immutableMergeWorker(handler, singleMode, ...values);
             if (updatedVal !== originalVal) {
               result = result || Object.assign({}, ...setToMerge);
@@ -177,6 +178,7 @@ function immutableMergeWorker<T extends object>(mergeOptions: RecursionOption | 
  *
  * @param objs - variable input array of typed objects to merge
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function immutableMerge<T extends object>(...objs: (T | undefined)[]): T | undefined {
   return immutableMergeWorker(true, false, ...objs);
 }
@@ -187,6 +189,7 @@ export function immutableMerge<T extends object>(...objs: (T | undefined)[]): T 
  * @param options - configuration options for the merge, this dictates what keys will be handled in what way
  * @param objs - set of objects to merge together
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function immutableMergeCore<T extends object>(options: RecursionOption | MergeOptions, ...objs: (T | undefined)[]): T | undefined {
   return immutableMergeWorker(options, false, ...objs);
 }
@@ -202,6 +205,7 @@ export function immutableMergeCore<T extends object>(options: RecursionOption | 
  * @param processors - set of processor functions for handling keys
  * @param objs - one or more objects to process.  If multiple objects are passed they will be merged
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function processImmutable<T extends object>(options: MergeOptions, ...objs: (T | undefined)[]): T | undefined {
   return immutableMergeWorker(options, true, ...objs);
 }

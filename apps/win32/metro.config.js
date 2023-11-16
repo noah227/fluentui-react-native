@@ -4,51 +4,23 @@
  *
  * @format
  */
-const path = require('path');
-const blacklist = require('metro-config/src/defaults/blacklist');
-const { getWatchFolders } = require('@uifabricshared/build-native');
+// @ts-check
+const { makeMetroConfig } = require('@rnx-kit/metro-config');
 const { getDefaultConfig } = require('metro-config');
 
-module.exports = (async () => {
+module.exports = async () => {
   const {
     resolver: { sourceExts, assetExts },
-  } = await getDefaultConfig();
-  return {
-    watchFolders: getWatchFolders(),
-    resolver: {
-      assetExts: [assetExts.filter((ext) => ext !== 'svg'), 'ttf', 'otf', 'png'],
-      sourceExts: [...sourceExts, 'svg'],
-      blacklistRE: blacklist([
-        // This stops "react-native run-windows" from causing the metro server to crash if its already running
-        new RegExp(`${path.resolve(__dirname, 'windows').replace(/[/\\]/g, '/')}.*`),
-      ]),
-    },
-    // Metro doesn't currently handle assets coming from hoisted packages within a monorepo.  This is the current workaround people use
-    // In this case this is to ensure that the image assets that are part of logbox get loaded correctly.
-    server: {
-      enhanceMiddleware: (middleware) => {
-        return (req, res, next) => {
-          if (req.url !== '/onchange') console.log('Incoming req: ' + req.url);
+  } = await getDefaultConfig(__dirname);
 
-          if (req.url.startsWith('/../node_modules/@office-iss/react-native-win32')) {
-            req.url = req.url.replace(
-              '/../node_modules/@office-iss/react-native-win32',
-              '/assets/../../node_modules/@office-iss/react-native-win32',
-            );
-          }
-          return middleware(req, res, next);
-        };
-      },
+  return makeMetroConfig({
+    resolver: {
+      assetExts: [...assetExts.filter((ext) => ext !== 'svg'), 'ttf', 'otf', 'png'],
+      sourceExts: [...sourceExts, 'svg'],
     },
     transformer: {
       // This transformer selects between the regular transformer and svg transformer depending on the file type
       babelTransformerPath: require.resolve('react-native-svg-transformer'),
-      getTransformOptions: async () => ({
-        transform: {
-          experimentalImportSupport: false,
-          inlineRequires: false,
-        },
-      }),
     },
-  };
-})();
+  });
+};

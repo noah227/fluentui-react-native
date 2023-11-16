@@ -1,6 +1,6 @@
 # FluentUI React Native
 
-[![npm version](https://badge.fury.io/js/%40fluentui%2Freact-native.svg)](https://badge.fury.io/js/%40fluentui%2Freact-native) [![Build Status](https://dev.azure.com/ms/ui-fabric-react-native/_apis/build/status/PR?branchName=master)](https://dev.azure.com/ms/ui-fabric-react-native/_build/latest?definitionId=226&branchName=master) [![Build Status](https://dev.azure.com/ms/ui-fabric-react-native/_apis/build/status/Publish?branchName=master)](https://dev.azure.com/ms/ui-fabric-react-native/_build/latest?definitionId=229&branchName=master)
+[![npm version](https://badge.fury.io/js/%40fluentui%2Freact-native.svg)](https://badge.fury.io/js/%40fluentui%2Freact-native) [![Build Status](https://dev.azure.com/ms/ui-fabric-react-native/_apis/build/status/PR?branchName=main)](https://dev.azure.com/ms/ui-fabric-react-native/_build/latest?definitionId=226&branchName=main) [![Build Status](https://dev.azure.com/ms/ui-fabric-react-native/_apis/build/status/Publish?branchName=main)](https://dev.azure.com/ms/ui-fabric-react-native/_build/latest?definitionId=229&branchName=main)
 
 FluentUI React Native is a javascript component library that provides developers with controls that are part of the [Fluent Design System](https://www.microsoft.com/design/fluent/). These controls are built on [React Native](https://reactnative.dev/) and fully customizable.
 
@@ -9,7 +9,7 @@ FluentUI React Native is still in the alpha stages of development for both the c
 Development status on each platform:
 | Windows | macOS | iOS | Android |
 |---------------------|---------------------|-------------|-------------|
-| Alpha (in progress) | Alpha (in progress) | Alpha (in progress) | Coming Soon |
+| Alpha (in progress) | Alpha (in progress) | Alpha (in progress) | Alpha (in progress) |
 
 ## Getting Started
 
@@ -50,7 +50,7 @@ function HelloWorldApp() {
       style={{
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       }}
     >
       <Text>Hello, world!</Text>
@@ -61,15 +61,17 @@ function HelloWorldApp() {
 export default HelloWorldApp;
 ```
 
+If you run into an error that says `pragma and pragmaFrag cannot be set when runtime is automatic`, you can try [switching to classic runtime](https://babeljs.io/docs/en/babel-preset-react/#both-runtimes).
+
 ## Documentation
 
 ### Components and Controls
 
-Our component documentation is hosted on the [FluentUI documentation](https://developer.microsoft.com/fluentui).
+Our component documentation can be found in SPEC.md files for each component. The current list can be found in our [Wiki's sidebar](https://github.com/microsoft/fluentui-react-native/wiki). They will be uploaded to a website at a future time.
 
 #### Expanding Component documentation
 
-The FluentUI website is built out of the [FluentUI repository](https://github.com/microsoft/fluentui/tree/master/apps/public-docsite). React-Native components and controls are documented in a 'cross' (cross-platform) directory in each component page directory, e.g. [Button 'cross' directory](https://github.com/microsoft/fluentui/tree/master/apps/public-docsite/src/pages/Controls/ButtonPage/docs/cross). The FluentUI website can be run locally to verify changes, and should reflect the current state of controls that have established the _v1_ set of properties on any one platform.
+Our SPEC.md files should reflect the current state of controls that have established the _v1_ set of properties on any one platform.
 
 Since the FluentUI React Native controls are cross-platform, but represented by a single page, it's important to distinguish platform differences and limitations. Examples include:
 
@@ -80,15 +82,15 @@ Since the FluentUI React Native controls are cross-platform, but represented by 
 
 ### Theming framework
 
-Our FluentUI framework documentation is found in this repository alongside the implementation.
+Documentation for Theming can be found in our docs file, or for more in depth documentation, along side the implementation.
 
-- [Theming Overview](./packages/framework/theming-react-native/README.md)
-- [StyleSheets](./packages/framework/themed-stylesheet/README.md)
-- [Customizing Theme Settings](./packages/framework/themed-settings/README.md)
-- [Theme Registry](./packages/framework/theme-registry/README.md)
-- [Tokens](./packages/framework/foundation-tokens/README.md)
-- [Settings and Slots](./packages/framework/foundation-settings/README.md)
-- [Compose](./packages/framework/foundation-compose/README.md) and [Composable](./packages/framework/foundation-composable/README.md)
+- [Theming Overview](./docs/pages/Theming/Basics.md)
+- [StyleSheets](./docs/pages/Theming/ThemedStylesheet.md)
+- [Customizing Theme Settings](./docs/pages/Theming/CustomTheme.md)
+- [Theme Reference](./packages/framework/theme/README.md)
+- [Tokens](./packages/framework/use-tokens/README.md)
+- [Slots](./packages/framework/use-slots/README.md)
+- [Customize and Compose](./packages/framework/composition/README.md)
 
 ## Developing in the repo
 
@@ -116,22 +118,20 @@ To start developing in the repository you can:
 
 After a successful yarn build, you can explore FluentUI Tester, our demo application to play with each of the controls. To run FluentUI Tester, please follow instructions in the [FluentUI Tester readme](./apps/fluent-tester/README.md).
 
-### Beachball
+Note: If your repo is located on either your Desktop or Documents folder, you may encounter the error: "Watchman error... Operation not permitted". Clone it in a different directory to avoid Watchman permission issues.
 
-This repo manages semantic versioning and publishing using [Beachball](https://github.com/microsoft/beachball). When contributing, make sure to run the following before making a pull request:
+### Prettier
 
-1. `yarn change` will take you through a command line wizard to generate change files
-2. Make sure to commit and push the newly generated change file
+This repo is set up to run [Prettier](https://prettier.io/). To run Prettier in fix mode on the repo, run `yarn prettier-fix` at the root of the Repo.
+
+If you are using [VSCode](https://code.visualstudio.com/) as your editor, you can configure it to run Prettier on save. Prettier is a recommended extension for the repo. You can configure it to run by:
+
+1. Installing the Prettier extension for VSCode
+2. Going to Settings > Text Editor > Formatting > Check Format On Save
 
 ## Contributing
 
-This project welcomes contributions and suggestions. Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
-
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+Please visit our [contribution guide](./CONTRIBUTING.md) for more information on contributing to this repo.
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or

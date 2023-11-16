@@ -10,10 +10,9 @@ const { copy } = require('./tasks/copy');
 const { jest } = require('./tasks/jest');
 const { ts } = require('./tasks/ts');
 const { eslint } = require('./tasks/eslint');
-const { webpack, webpackDevServer } = require('./tasks/webpack');
 const { depcheckTask } = require('./tasks/depcheck');
-const { verifyApiExtractor, updateApiExtractor } = require('./tasks/api-extractor');
-const checkForModifiedFiles = require('./tasks/check-for-modified-files');
+const { checkForModifiedFiles } = require('./tasks/checkForModifiedFilesTask');
+const { findGitRoot } = require('workspace-tools');
 
 export function preset() {
   // this add s a resolve path for the build tooling deps like TS from the scripts folder
@@ -23,8 +22,6 @@ export function preset() {
 
   // Adds an alias for 'npm-install-mode' for backwards compatibility
   option('min', { alias: 'npm-install-mode' });
-
-  option('webpackConfig', { alias: 'w' });
 
   // Build only commonjs (not other TS variants) but still run other tasks
   option('commonjs');
@@ -39,24 +36,40 @@ export function preset() {
   task('ts:esm', ts.esm);
   task('eslint', eslint);
   task('ts:commonjs-only', ts.commonjsOnly);
-  task('webpack', webpack);
-  task('webpack-dev-server', webpackDevServer);
-  task('verify-api-extractor', verifyApiExtractor);
-  task('update-api-extractor', updateApiExtractor);
-  task('prettier', () => (argv().fix ? prettierTask : prettierCheckTask));
-  task('check-for-modified-files', checkForModifiedFiles);
+  task('prettier', () =>
+    argv().fix
+      ? prettierTask({ files: ['src/.'], ignorePath: path.join(findGitRoot(process.cwd()), '.prettierignore') })
+      : prettierCheckTask({ files: ['src/.'], ignorePath: path.join(findGitRoot(process.cwd()), '.prettierignore') }),
+  );
+  task('checkForModifiedFiles', checkForModifiedFiles);
   task('tsall', parallel('ts:commonjs', 'ts:esm'));
-  task('ts', series(condition('ts:commonjs-only', () => !!argv().commonjs), condition('tsall', () => !argv().commonjs)));
+  task(
+    'ts',
+    series(
+      condition('ts:commonjs-only', () => !!argv().commonjs),
+      condition('tsall', () => !argv().commonjs),
+    ),
+  );
 
-  task('validate', parallel('eslint', condition('jest', () => fs.existsSync(path.join(process.cwd(), 'jest.config.js')))));
+  task(
+    'validate',
+    parallel(
+      'eslint',
+      condition('jest', () => fs.existsSync(path.join(process.cwd(), 'jest.config.js'))),
+    ),
+  );
 
-  task('code-style', series('prettier', 'eslint'));
-  task('update-api', series('clean', 'copy', 'ts', 'update-api-extractor'));
-  task('dev', series('clean', 'copy', 'webpack-dev-server'));
-
-  task('build:node-lib', series('clean', 'copy', series(condition('validate', () => !argv().min), 'ts:commonjs-only')));
-
-  task('bundle', series('webpack'));
+  task(
+    'build:node-lib',
+    series(
+      'clean',
+      'copy',
+      series(
+        condition('validate', () => !argv().min),
+        'ts:commonjs-only',
+      ),
+    ),
+  );
 
   task('build', series('clean', 'copy', 'ts'));
 

@@ -1,6 +1,6 @@
 // @ts-check
 
-const { task, series, parallel, option, argv, tscTask, cleanTask, eslintTask } = require('just-scripts');
+const { task, series, parallel, option, argv, tscTask, cleanTask, eslintTask, prettierTask, prettierCheckTask } = require('just-scripts');
 
 const path = require('path');
 
@@ -10,6 +10,11 @@ const libPath = path.join(process.cwd(), 'lib');
 const checkPublishing = () => {
   const { checkPublishingTask } = require('./lib/tasks/checkPublishingTask');
   return checkPublishingTask();
+};
+
+const checkForModifiedFiles = () => {
+  const { checkForModifiedFiles } = require('./lib/tasks/checkForModifiedFilesTask');
+  return checkForModifiedFiles();
 };
 
 module.exports = function preset() {
@@ -28,8 +33,10 @@ module.exports = function preset() {
   );
 
   task('depcheck', checkPublishing);
-  task('lint', eslintTask({ files: ['src/.'] }));
+  task('lint', eslintTask({ files: ['src/'] }));
+  task('prettier', () => (argv().fix ? prettierTask : prettierCheckTask));
   task('cleanlib', cleanTask([libPath]));
+  task('checkForModifiedFiles', checkForModifiedFiles);
   task('build', series('cleanlib', parallel('lint', 'ts')));
   task('no-op', () => {});
   task('clean', 'no-op');

@@ -1,6 +1,6 @@
 {
-  "name": "uifabric-react-native",
-  "version": "0.1.1",
+  "name": "@fluentui-react-native/repo",
+  "version": "1.22.19",
   "private": true,
   "description": "",
   "keywords": [],
@@ -21,28 +21,70 @@
     "bundle": "lage bundle",
     "clean": "lage clean",
     "change": "beachball change",
-    "check-for-changed-files": "cd scripts && yarn fluentui-scripts check-for-modified-files",
+    "check-for-changed-files": "cd scripts && yarn fluentui-scripts checkForModifiedFiles",
     "checkchange": "beachball check --changehint \"Run 'yarn change' to generate a change file\"",
-    "depcheck": "lage depcheck",
+    "align-deps": "rnx-align-deps --requirements react-native@0.72",
+    "depcheck": "yarn align-deps && lage depcheck",
     "lint": "lage lint",
     "preinstall": "node ./scripts/use-yarn-please.js",
-    "prettier": "cd scripts && yarn prettier",
-    "postinstall": "node ./scripts/postinstall.js",
-    "publish:beachball": "beachball publish --bump-deps -m\"📦 applying package updates ***NO_CI***\"",
+    "prettier": "lage prettier",
+    "prettier-fix": "lage prettier-fix",
+    "publish:beachball": "beachball publish --bump-deps -m\"📦 applying package updates ***NO_CI***\"  --verbose",
     "test": "lage test",
-    "verify-api": "lage verify-api",
-    "update-api": "lage update-api"
+    "test-links": "markdown-link-check"
   },
   "devDependencies": {
-    "beachball": "^1.35.0",
-    "lage": ">=0.17.4 <1.0.0",
-    "react-dom": "^16.13.1"
+    "@babel/core": "^7.8.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.8.0",
+    "@babel/preset-react": "^7.8.0",
+    "@babel/preset-typescript": "^7.8.0",
+    "@react-native/metro-config": "^0.72.0",
+    "@rnx-kit/align-deps": "^2.2.5",
+    "babel-jest": "^24.9.0",
+    "beachball": "^2.20.0",
+    "eslint-plugin-import": "^2.27.5",
+    "lage": "^2.0.0",
+    "markdown-link-check": "^3.8.7",
+    "metro-react-native-babel-preset": "^0.76.5",
+    "react": "18.2.0",
+    "react-dom": "^18.2.0",
+    "react-native": "^0.72.0"
   },
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "packages/**",
-      "scripts"
-    ]
-  }
+  "peerDependencies": {
+    "react": "18.2.0",
+    "react-dom": "^18.2.0",
+    "react-native": "^0.72.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/**",
+    "scripts"
+  ],
+  "resolutions": {
+    "es5-ext": "0.10.53",
+    "@types/react": "^18.2.0",
+    "micromatch": "^4.0.0",
+    "react-native-svg": "^13.7.0",
+    "semver": "^7.5.2",
+    "xml2js": "^0.5.0",
+    "yaml": "^2.2.2"
+  },
+  "rnx-kit": {
+    "kitType": "library",
+    "alignDeps": {
+      "presets": [
+        "microsoft/react-native"
+      ],
+      "requirements": [
+        "react-native@0.72"
+      ],
+      "capabilities": [
+        "babel-preset-react-native",
+        "core",
+        "react-dom"
+      ]
+    }
+  },
+  "packageManager": "yarn@3.6.1"
 }

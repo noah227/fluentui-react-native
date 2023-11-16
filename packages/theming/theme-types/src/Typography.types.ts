@@ -1,3 +1,5 @@
+import type { TextProps, TextStyle } from 'react-native';
+
 /**
  * A font family designation, made up of one or more font names or groupings
  * (comma-separated):
@@ -26,6 +28,7 @@ export interface FontFamilies {
   secondary: FontFamilyValue;
   cursive: FontFamilyValue;
   monospace: FontFamilyValue;
+  numeric: FontFamilyValue;
   sansSerif: FontFamilyValue;
   serif: FontFamilyValue;
 }
@@ -70,7 +73,7 @@ export type FontSize = keyof FontSizes | FontSizeValuePoints;
  * Smaller numbers yield a thinner, lighter font. Larger numbers yield a thicker, darker
  * font.
  */
-export type FontWeightValue = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
+export type FontWeightValue = TextStyle['fontWeight'];
 
 /**
  * A collection of named font weights.
@@ -92,12 +95,30 @@ export interface FontWeights {
 export type FontWeight = keyof FontWeights | FontWeightValue;
 
 /**
+ * A font line height value, specified in CSS pixels (px).
+ */
+export type FontLineHeight = number;
+
+/**
+ * A font letter spacing value, specified in points on Apple platforms and ems everywhere else.
+ */
+export type FontLetterSpacing = number;
+
+/**
+ * On iOS, the Dynamic Type ramp that this variant should conform to.
+ */
+export type FontDynamicTypeRamp = TextProps['dynamicTypeRamp'];
+
+/**
  * A font variant value.
  */
 export type VariantValue = {
   face: FontFamily;
   size: FontSize;
   weight: FontWeight;
+  lineHeight?: FontLineHeight;
+  letterSpacing?: FontLetterSpacing;
+  dynamicTypeRamp?: FontDynamicTypeRamp;
 };
 
 /**
@@ -117,6 +138,24 @@ export interface Variants {
   heroSemibold: VariantValue;
   heroLargeStandard: VariantValue;
   heroLargeSemibold: VariantValue;
+  //v2 variants
+  caption1?: VariantValue;
+  caption1Strong?: VariantValue;
+  caption2?: VariantValue;
+  body1?: VariantValue;
+  body1Strong?: VariantValue;
+  body2?: VariantValue;
+  body2Strong?: VariantValue;
+  subtitle1?: VariantValue;
+  subtitle1Strong?: VariantValue;
+  subtitle2?: VariantValue;
+  subtitle2Strong?: VariantValue;
+  title1?: VariantValue;
+  title1Strong?: VariantValue;
+  title2?: VariantValue;
+  title3?: VariantValue;
+  largeTitle?: VariantValue;
+  display?: VariantValue;
 }
 
 /**

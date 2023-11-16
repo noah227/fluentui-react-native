@@ -1,8 +1,88 @@
 # Change Log - @fluentui-react-native/immutable-merge
 
-This log was last generated on Fri, 23 Oct 2020 22:27:37 GMT and should not be manually modified.
+This log was last generated on Wed, 09 Aug 2023 22:02:14 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.1
+
+Wed, 09 Aug 2023 22:02:14 GMT
+
+### Patches
+
+- Result of yarn (ruaraki@microsoft.com)
+
+## 1.2.0
+
+Mon, 05 Jun 2023 19:26:23 GMT
+
+### Minor changes
+
+- Update to react-native 0.71 (30809111+acoates-ms@users.noreply.github.com)
+
+## 1.1.8
+
+Wed, 01 Feb 2023 22:33:15 GMT
+
+### Patches
+
+- Enable @typescript-eslint/consistent-type-imports (30809111+acoates-ms@users.noreply.github.com)
+
+## 1.1.7
+
+Thu, 31 Mar 2022 07:27:47 GMT
+
+### Patches
+
+- Ban `export *` in index files for better tree-shakeability (4123478+tido64@users.noreply.github.com)
+
+## 1.1.6
+
+Mon, 20 Dec 2021 22:56:01 GMT
+
+### Patches
+
+- Add repository property to all package.json files (ruaraki@microsoft.com)
+
+## 1.1.5
+
+Sat, 18 Dec 2021 04:15:04 GMT
+
+### Patches
+
+- Update to TypeScript 4.5.4. (afoxman@microsoft.com)
+
+## 1.1.4
+
+Mon, 25 Oct 2021 19:24:43 GMT
+
+### Patches
+
+- Use tslib where spreadArray is used (ruaraki@microsoft.com)
+
+## 1.1.3
+
+Wed, 04 Aug 2021 06:26:25 GMT
+
+### Patches
+
+- radio group on macOS (67026167+chiuam@users.noreply.github.com)
+
+## 1.1.2
+
+Wed, 21 Jul 2021 22:55:40 GMT
+
+### Patches
+
+- expose use-tokens in framework package (jasonmo@microsoft.com)
+
+## 1.1.1
+
+Fri, 18 Jun 2021 00:38:19 GMT
+
+### Patches
+
+- Apply prettier to framework, run (ruaraki@microsoft.com)
 
 ## 1.1.0
 

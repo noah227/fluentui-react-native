@@ -1,4 +1,6 @@
-import { FontSize, FontSizes, FontWeightValue, Typography, Variants } from '@fluentui-react-native/theme-types';
+import type { FontSize, FontSizes, FontWeightValue, Typography, Variants } from '@fluentui-react-native/theme-types';
+
+import { createFontAliasTokens } from './createFontAliasTokens.ios';
 
 // The sizes are taken for the Dynamic Type Size "Large", which is the system default
 export function appleTypography(): Typography {
@@ -28,6 +30,7 @@ export function appleTypography(): Typography {
       secondary: 'System',
       cursive: 'System',
       monospace: 'System',
+      numeric: 'System',
       sansSerif: 'System',
       serif: 'System',
     },
@@ -45,6 +48,8 @@ export function appleTypography(): Typography {
       heroSemibold: { face: 'primary', size: 'hero', weight: '600' },
       heroLargeStandard: { face: 'primary', size: 'heroLarge', weight: '400' },
       heroLargeSemibold: { face: 'primary', size: 'heroLarge', weight: '600' },
+      // iOS styles
+      ...createFontAliasTokens(),
     } as Variants,
   };
 

@@ -2,6 +2,1054 @@
   "name": "@fluentui-react-native/theme-types",
   "entries": [
     {
+      "date": "Thu, 09 Nov 2023 02:39:11 GMT",
+      "version": "0.33.0",
+      "tag": "@fluentui-react-native/theme-types_v0.33.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "4a6a9cd63396c6e8fc6ffbfec7137652928e40ef",
+            "comment": "Update to react-native 0.72"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 07 Nov 2023 20:20:35 GMT",
+      "version": "0.32.3",
+      "tag": "@fluentui-react-native/theme-types_v0.32.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "adgleitm@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "130232522fd2916880ec3decfe594550f069d7a7",
+            "comment": "Use RN-based dynamic type"
+          },
+          {
+            "author": "safreibe@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "252935c886c6ffba5fd30593e63cbce4f61f7a90",
+            "comment": "Manually bump packages stuck in the pipeline"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 30 Oct 2023 21:26:06 GMT",
+      "version": "0.32.1",
+      "tag": "@fluentui-react-native/theme-types_v0.32.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "7461843f37999539940e7babf4603f0a3719aeaa",
+            "comment": "remove deprecated alias tokens from v1 components"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 05 Jun 2023 19:26:25 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.32.0",
+      "version": "0.32.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "sanajmi@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "8c0f9d27e34913da82c00299c12c399877257325",
+            "comment": "Upgrade to React Native 0.71"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 30 May 2023 20:34:15 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.31.2",
+      "version": "0.31.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "78454019+lyzhan7@users.noreply.github.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "09fa3b65fd9d29f4dc4769e1e479fb5a82812979",
+            "comment": "Add macOS status tokens and accessible mobile stroke colors to AliasColorTokens interface"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 03 May 2023 07:08:52 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.31.1",
+      "version": "0.31.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "78454019+lyzhan7@users.noreply.github.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "52a53e376865d500b73f26ea9935e13036b04b1a",
+            "comment": "Update design-tokens package to 0.47.0"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 14 Mar 2023 20:50:45 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.31.0",
+      "version": "0.31.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "ruaraki@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "b2d39b11dbaa12600bd96a9d54e0ebd013d9597f",
+            "comment": "Add numeric font family type"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 03 Mar 2023 06:47:25 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.30.4",
+      "version": "0.30.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "4659b74650377d2f746a81a321346a481816a5af",
+            "comment": "Comment"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 24 Feb 2023 20:40:00 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.30.3",
+      "version": "0.30.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "78454019+lyzhan7@users.noreply.github.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "743bd1507af336a62946361f3fe3c800ae5bd4c2",
+            "comment": "Order imports"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 01 Feb 2023 22:33:17 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.30.2",
+      "version": "0.30.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "2d0138c80d7512b905fcf32583760bec2b911910",
+            "comment": "Enable @typescript-eslint/consistent-type-imports"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 30 Jan 2023 15:17:32 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.30.1",
+      "version": "0.30.1",
+      "comments": {
+        "none": [
+          {
+            "author": "4123478+tido64@users.noreply.github.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "4de4c2b37c835ebd9af015ff767f9dd68452f786",
+            "comment": "Migrate to align-deps"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 30 Jan 2023 07:12:38 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.30.1",
+      "version": "0.30.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "mischreiber@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "f6f403b2efe86a229448a618b043601ceefd9a5f",
+            "comment": "Add `darkElevated` theme"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 25 Jan 2023 21:31:17 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.30.0",
+      "version": "0.30.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "391f3d691e286300dfad37cad539bed54d4436b4",
+            "comment": "Adding shared colors android"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 18 Jan 2023 01:55:11 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.29.1",
+      "version": "0.29.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "78454019+lyzhan7@users.noreply.github.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "f7626f6eb1f6c267c40c60c9aef8b8cd899a046b",
+            "comment": "Add shared colors to AliasColorTokens and mapPipelineToTheme"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 10 Jan 2023 20:17:18 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.29.0",
+      "version": "0.29.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "78454019+lyzhan7@users.noreply.github.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "bd23a4ac5dd35729323268e384aeb1e970fce4ac",
+            "comment": "Set up iOS color alias tokens"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 29 Dec 2022 03:47:47 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.28.0",
+      "version": "0.28.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "adam.gleitman@gmail.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "6d8afaea8495b16c2acd8aa4d1de62036110968c",
+            "comment": "Define `FontWeightValue` in terms of what RN says"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Dec 2022 22:21:15 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.27.1",
+      "version": "0.27.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "78454019+lyzhan7@users.noreply.github.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "d401f5bb1412b93aafa8138e6410bf816b38989c",
+            "comment": "List platforms each token is defined on"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 15 Dec 2022 14:50:50 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.27.0",
+      "version": "0.27.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "adgleitm@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "ac1a77d965fb36b5ecdcfed3c7beaff4c93b1670",
+            "comment": "Add MaximumFontSize test element"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 09 Dec 2022 05:23:38 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.26.0",
+      "version": "0.26.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "rohanpd.work@gmail.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "837811eb630178f3f6b5ec201f89b30a30afb3f0",
+            "comment": "switch initial tokenization and tester app changes"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 06 Dec 2022 00:46:41 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.25.0",
+      "version": "0.25.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "adgleitm@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "bb56215afebd2cadbe34da92ab4768c2d2a6b355",
+            "comment": "Allow V1 usage of V2 text variants"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 01 Dec 2022 03:12:20 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.24.0",
+      "version": "0.24.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "rohanpd.work@gmail.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "9faf7ab61974a5d5f7dd0c5aa84a123a68d786f8",
+            "comment": "theme spacing tokens change"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 04 Nov 2022 14:36:23 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.23.1",
+      "version": "0.23.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "ddd021042b3e70af9dcc976f1d89e9c912defa65",
+            "comment": "missingTokens"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 27 Oct 2022 11:09:35 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.23.0",
+      "version": "0.23.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "ceeb4be38b8e0008315f65711c064c5fbd3d8bb8",
+            "comment": "BrandTokensIntegration"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 12 Oct 2022 21:54:15 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.22.0",
+      "version": "0.22.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "adgleitm@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "e2edb2218d4c953ac465dc3460e2923441dfae5b",
+            "comment": "Make `Theme.spacing` read-only"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 11 Oct 2022 22:41:44 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.21.0",
+      "version": "0.21.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "adam.gleitman@gmail.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "3547a335f47efb90f52c10443dc85f755046a324",
+            "comment": "Add new spacing tokens"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 30 Sep 2022 08:04:44 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.20.0",
+      "version": "0.20.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "609f7988754b77b86f2ed51d0ce4714fb2152293",
+            "comment": "Made color type properties optional"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 30 Sep 2022 00:54:37 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.19.2",
+      "version": "0.19.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "krsiler@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "de9ddf75304295843613e144473e4fef3190f14b",
+            "comment": "Update react-native to 0.68"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Sep 2022 21:00:40 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.19.1",
+      "version": "0.19.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "adam.gleitman@gmail.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "6706e18d88a521539fdc717100516ec3ee4bb5e2",
+            "comment": "Merge branch 'main' into ios-typography-tokens"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 16 Sep 2022 01:53:06 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.19.0",
+      "version": "0.19.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "adam.gleitman@gmail.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "379d866e6ec5a3d954b5e945949467345f815513",
+            "comment": "Rename FontLightHeight to FontLineHeight"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 14 Jul 2022 18:09:50 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.18.0",
+      "version": "0.18.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "sanajmi@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "155145b496a51b06bba73f8f9c6b89dc7b348c4b",
+            "comment": "Update to React Native 0.66"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 25 May 2022 18:43:10 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.17.0",
+      "version": "0.17.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "18480e3fdf2038a34147995f413a45d14f012a73",
+            "comment": "Add text implementation v2"
+          }
+        ],
+        "patch": [
+          {
+            "author": "krsiler@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "7d1c5dba49eb5da6c18681b8c9295c7fa0d0353b",
+            "comment": "Version bump for packages to attempt to fix NPM publish pipeline"
+          },
+          {
+            "author": "krsiler@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "f4e881a5caef5a8258094f2a2ba674c62321886d",
+            "comment": "beachball sync"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 21 May 2022 01:47:57 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.15.0",
+      "version": "0.15.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "ruaraki@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "3fdd5fccdcd5e76c90bac7ad2fa436917b1c84e0",
+            "comment": "Add shadows to the theme"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 28 Apr 2022 19:09:51 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.14.3",
+      "version": "0.14.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "sanajmi@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "8cff404ca31eaa61017551a1d73fd3fdae7da132",
+            "comment": "Revert \"Add Text props and test new Variant types (#1615)\""
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 27 Apr 2022 19:30:38 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.14.2",
+      "version": "0.14.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "f3481f50e20c6ab33f7f3ffca63e9f1e424fe2c1",
+            "comment": "initial Text implementation"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 31 Mar 2022 07:27:48 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.14.1",
+      "version": "0.14.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "4123478+tido64@users.noreply.github.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "c39b4436f2ca160a31ca1d7ca9fa8bf7d59512ed",
+            "comment": "Ban `export *` in index files for better tree-shakeability"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 03 Mar 2022 20:20:09 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.14.0",
+      "version": "0.14.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "ruaraki@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "54222b74c7d5f16d1108fab470a6f549de8e9b45",
+            "comment": "New alias tokens"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 18 Feb 2022 23:27:11 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.13.3",
+      "version": "0.13.3",
+      "comments": {
+        "none": [
+          {
+            "author": "ruaraki@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "597b1e6bd7b3791df8fad2e0ec83810872261c54",
+            "comment": "Remove web endpoint"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 16 Feb 2022 21:58:21 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.13.3",
+      "version": "0.13.3",
+      "comments": {
+        "none": [
+          {
+            "author": "ruaraki@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "fc506e0ea21def220cd2e7b4fe36361446c5f8c6",
+            "comment": "Update just"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 14 Feb 2022 23:29:33 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.13.3",
+      "version": "0.13.3",
+      "comments": {
+        "none": [
+          {
+            "author": "amchiu@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "368fe5f4565442196f236e421b1c37c79556d2dd",
+            "comment": "update button tokens"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 14 Jan 2022 01:00:04 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.13.3",
+      "version": "0.13.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "ef3732e4e5b82e3f324ca0eed4b12b6617788299",
+            "comment": "fix disabled button"
+          }
+        ],
+        "none": [
+          {
+            "author": "sanajmi@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "163defba33412f6f44117750a540b8fdecd3bdca",
+            "comment": "Remove references to uifabricshared"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 06 Jan 2022 23:14:38 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.13.2",
+      "version": "0.13.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "ruaraki@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "58c54eff228ec071098f3c18a91f11b4a89a6c15",
+            "comment": "Add fallback entries"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 20 Dec 2021 22:56:01 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.13.1",
+      "version": "0.13.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "ruaraki@microsoft.com",
+            "package": "@fluentui-react-native/theme-types",
+            "commit": "f4a5b4f5c9c190400e3e34c4a33b3ed30696d41e",
+            "comment": "Add repository property to all package.json files"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 17 Nov 2021 19:28:07 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.13.0",
+      "version": "0.13.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Update to react-native 0.64",
+            "author": "afoxman@microsoft.com",
+            "commit": "f16d742b5c2d5b97e49ac1ef7b740cbf89fc42e6",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 11 Nov 2021 23:17:41 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.12.4",
+      "version": "0.12.4",
+      "comments": {
+        "none": [
+          {
+            "comment": "Rename uifabricshared/eslint-config-rules to fluentui-react-native/eslint-config-rules",
+            "author": "ruaraki@microsoft.com",
+            "commit": "110fba2a1721a914501404f6040f07656307549e",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 01 Nov 2021 18:53:37 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.12.4",
+      "version": "0.12.4",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Pipe changes through theme system",
+            "author": "ruaraki@microsoft.com",
+            "commit": "f05bda9db60753eb07b2688526ed158d690b8b63",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 28 Sep 2021 21:08:25 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.12.3",
+      "version": "0.12.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Delete NativeButton",
+            "author": "67026167+chiuam@users.noreply.github.com",
+            "commit": "335503904094894a91e53c6de328bf13e13bcc1c",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 21 Sep 2021 16:32:12 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.12.2",
+      "version": "0.12.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "adding an adapter for macOS",
+            "author": "67026167+chiuam@users.noreply.github.com",
+            "commit": "2d8e314d1cbdbccbd87251fbe125b14b1014486e",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 09 Sep 2021 20:03:01 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.12.1",
+      "version": "0.12.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Reshape input",
+            "author": "ruaraki@microsoft.com",
+            "commit": "30bcd9859911c2bb83f2d6ea29dda12cc029265e",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 26 Aug 2021 21:02:08 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.12.0",
+      "version": "0.12.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add HC plumbing",
+            "author": "ruaraki@microsoft.com",
+            "commit": "4628684e9b1b337af67c5d0a1833ad8646db170a",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 26 Aug 2021 04:48:40 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.11.3",
+      "version": "0.11.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix text truncation for radio button",
+            "author": "67026167+chiuam@users.noreply.github.com",
+            "commit": "b8c866644b2c5b64530990e59153424b0d6f5dcc",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 18 Aug 2021 23:00:57 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.11.2",
+      "version": "0.11.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Rename tokens to avoid name clash, initial token re-population",
+            "author": "ruaraki@microsoft.com",
+            "commit": "345d1de930ff42359260da7f1e68a16059f4d763",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 13 Aug 2021 16:12:26 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.11.1",
+      "version": "0.11.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix icons in experimental button and add fab",
+            "author": "t-lindaweng@microsoft.com",
+            "commit": "8946966df6ddc0ef1c0b43e576a4124c678d7c89",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 12 Aug 2021 17:23:44 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.11.0",
+      "version": "0.11.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "rename an alias token to avoid name clash",
+            "author": "ruaraki@microsoft.com",
+            "commit": "e524662e3e40fe45a2dcc6e2acd3aca1197b5b5a",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 10 Aug 2021 21:12:30 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.10.0",
+      "version": "0.10.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add missing tokens",
+            "author": "ruaraki@microsoft.com",
+            "commit": "ce49f33c08add7892191cf840d2fdcccfd0a16bb",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 07 Aug 2021 00:40:04 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.9.3",
+      "version": "0.9.3",
+      "comments": {
+        "none": [
+          {
+            "comment": "enable usePressableState with stock Pressable component",
+            "author": "jasonmo@microsoft.com",
+            "commit": "e506337e109ef24e675c2ac794179db86fcb7e86",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 06 Aug 2021 00:36:02 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.9.3",
+      "version": "0.9.3",
+      "comments": {
+        "none": [
+          {
+            "comment": "Remove api-extractor related files",
+            "author": "ruaraki@microsoft.com",
+            "commit": "56ccce452d0dbbd5c24f53ebdd467f2d01dda694",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 04 Aug 2021 06:26:25 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.9.3",
+      "version": "0.9.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "radio group on macOS",
+            "author": "67026167+chiuam@users.noreply.github.com",
+            "commit": "68dd61bd45ca8ffacc1580e468f3c01810e3093e",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Jul 2021 22:17:20 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.9.2",
+      "version": "0.9.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "add compressible utility and a snapshot test / demo to framework",
+            "author": "jasonmo@microsoft.com",
+            "commit": "1cd8611e1e88848ab66f7c0e9113c946f968260c",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Jul 2021 18:55:58 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.9.1",
+      "version": "0.9.1",
+      "comments": {
+        "none": [
+          {
+            "comment": "ESLint fixes",
+            "author": "4123478+tido64@users.noreply.github.com",
+            "commit": "07d04d166b13ff79e07a8c4cbc2e06afb1e4c3e6",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 26 Jul 2021 20:41:04 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.9.1",
+      "version": "0.9.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "add new use-slot package, move framework to consume that package",
+            "author": "jasonmo@microsoft.com",
+            "commit": "ad02fbbe9eaa5fbe6ec6126ccb719a1280f108a6",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 24 Jul 2021 00:28:25 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.9.0",
+      "version": "0.9.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "createAliasTokens to generate alias token structure",
+            "author": "email not defined",
+            "commit": "42553f6e66bcdc721ddeba9d0678a7167c696531",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 23 Jul 2021 17:28:27 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.8.3",
+      "version": "0.8.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix @types/react to be less than 16.14.0 since our react version is less than 16.14",
+            "author": "email not defined",
+            "commit": "a0b780533a52c66822df9cad7fb7948d41f80b73",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Jul 2021 22:55:40 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.8.2",
+      "version": "0.8.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "expose use-tokens in framework package",
+            "author": "jasonmo@microsoft.com",
+            "commit": "af44164cf47abb856e567e9976043aafe414ade6",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 21 Jul 2021 21:46:12 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.8.1",
+      "version": "0.8.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Use peer dependencies for react-native version not dependencies",
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "commit": "8f239e02e430f53565e9356cb89e1bb34803f0a7",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 25 Jun 2021 06:21:11 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.8.0",
+      "version": "0.8.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add activity ring to PersonaCoin",
+            "author": "tamasane@gmail.com",
+            "commit": "592cd8a40cc814696cbb59b93d5801089cec276f",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 21 Jun 2021 11:19:28 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.7.2",
+      "version": "0.7.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add checkmarkColor to apple theme",
+            "author": "tamasane@gmail.com",
+            "commit": "e6f863599192ecdc71887712094638831e4a0548",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 18 Jun 2021 00:38:19 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.7.1",
+      "version": "0.7.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Apply prettier to libraries core and theming, run",
+            "author": "ruaraki@microsoft.com",
+            "commit": "907fea51098ba59a8235128e17fb82a327b7adb2",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 15 Jun 2021 00:55:36 GMT",
+      "tag": "@fluentui-react-native/theme-types_v0.7.0",
+      "version": "0.7.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add support for ColorValue",
+            "author": "ruaraki@microsoft.com",
+            "commit": "90e0dcb92a4ea4ee5ea5373f2c54defa127749bf",
+            "package": "@fluentui-react-native/theme-types"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 06 Mar 2021 00:20:05 GMT",
       "tag": "@fluentui-react-native/theme-types_v0.6.0",
       "version": "0.6.0",

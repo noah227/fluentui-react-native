@@ -1,9 +1,13 @@
-import { Alignment, StackSlotProps, StackTokens, StackProps, stackName, StackTokenProps } from './Stack.types';
-import { parseGap, parsePadding } from './StackUtils';
-import { ViewStyle, ViewProps } from 'react-native';
-import { ITheme } from '@uifabricshared/theming-ramp';
-import { UseStylingOptions, buildProps, GetMemoValue } from '@fluentui-react-native/framework';
+import type { ViewStyle, ViewProps } from 'react-native';
+
+import type { Theme } from '@fluentui-react-native/framework';
+import type { UseStylingOptions, GetMemoValue } from '@fluentui-react-native/framework';
+import { buildProps } from '@fluentui-react-native/framework';
 import { borderStyles } from '@fluentui-react-native/tokens';
+
+import { stackName } from './Stack.types';
+import type { Alignment, StackSlotProps, StackTokens, StackProps, StackTokenProps } from './Stack.types';
+import { parseGap, parsePadding } from './StackUtils';
 
 const nameMap: { [key: string]: Alignment } = {
   start: 'flex-start',
@@ -40,7 +44,7 @@ const tokensThatAreAlsoProps: (keyof StackTokenProps)[] = [
 
 const nowrapProps: ViewProps = {};
 
-const buildInnerProps = (tokenProps: StackTokens, theme: ITheme, cache: GetMemoValue<ViewProps>) => {
+const buildInnerProps = (tokenProps: StackTokens, theme: Theme, cache: GetMemoValue<ViewProps>) => {
   // if wrapping is disabled just return a fixed empty object without doing any additional work
   if (!tokenProps.wrap) {
     return nowrapProps;
@@ -53,27 +57,22 @@ const buildInnerProps = (tokenProps: StackTokens, theme: ITheme, cache: GetMemoV
     : cache(() => {
         const childrenGap = tokenProps.childrenGap || tokenProps.gap;
         const { rowGap, columnGap } = parseGap(childrenGap, theme);
-        const horizontalMargin = `${-0.5 * columnGap.value}${columnGap.unit}`;
-        const verticalMargin = `${-0.5 * rowGap.value}${rowGap.unit}`;
 
         const innerStyle: ViewStyle = {
           display: 'flex',
           flexWrap: 'wrap',
           overflow: 'visible',
-          marginLeft: horizontalMargin,
-          marginRight: horizontalMargin,
-          marginTop: verticalMargin,
-          marginBottom: verticalMargin,
+          rowGap: rowGap,
+          columnGap: columnGap,
           padding: parsePadding(padding, theme),
-          width: columnGap.value === 0 ? '100%' : `calc(100% + ${columnGap.value}${columnGap.unit})`,
+          width: '100%',
         };
         _mapAlignment(!!horizontal, horizontalAlign, verticalAlign, innerStyle);
-        const heightToSet = rowGap.value === 0 ? '100%' : `calc(100% + ${rowGap.value}${rowGap.unit})`;
         if (horizontal) {
-          innerStyle.height = heightToSet;
+          innerStyle.height = '100%';
         } else {
-          innerStyle.maxHeight = heightToSet;
-          innerStyle.height = `calc(100% + ${rowGap.value}${rowGap.unit})`;
+          innerStyle.maxHeight = '100%';
+          innerStyle.height = `100%`;
         }
 
         return { style: innerStyle };
@@ -81,7 +80,7 @@ const buildInnerProps = (tokenProps: StackTokens, theme: ITheme, cache: GetMemoV
 };
 
 const buildRootProps = buildProps<ViewProps, StackTokens>(
-  (tokenProps: StackTokens, theme: ITheme) => {
+  (tokenProps: StackTokens, theme: Theme) => {
     const { grow, horizontal, horizontalAlign, verticalAlign, maxHeight, maxWidth, padding, wrap, reversed, verticalFill } = tokenProps;
 
     const rootStyle: ViewStyle = {

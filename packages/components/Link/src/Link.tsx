@@ -1,95 +1,56 @@
+/** @jsxRuntime classic */
 /** @jsx withSlots */
 import * as React from 'react';
+import { Platform, View } from 'react-native';
 
-import { Linking, View } from 'react-native';
-import { Text } from '@fluentui-react-native/text';
-import { compose, IUseComposeStyling } from '@uifabricshared/foundation-compose';
-import { ILinkProps, ILinkSlotProps, ILinkState, ILinkRenderData, IWithLinkOptions, linkName, ILinkType } from './Link.types';
-import { settings } from './Link.settings';
-import { foregroundColorTokens, textTokens, borderTokens } from '@fluentui-react-native/tokens';
-import { useAsPressable, useKeyCallback, useViewCommandFocus } from '@fluentui-react-native/interactive-hooks';
-import { mergeSettings } from '@uifabricshared/foundation-settings';
-import { ISlots, withSlots } from '@uifabricshared/foundation-composable';
-import { IViewProps } from '@fluentui-react-native/adapters';
+import type { UseSlots } from '@fluentui-react-native/framework';
+import { compose, mergeProps, withSlots } from '@fluentui-react-native/framework';
+import { TextV1 as Text } from '@fluentui-react-native/text';
 
-export type ILinkHooks = [IWithLinkOptions<IViewProps>, ILinkState];
+import { stylingSettings } from './Link.styling';
+import type { LinkType, LinkProps, LinkState } from './Link.types';
+import { linkName } from './Link.types';
+import { useLink } from './useLink';
 
-export function useAsLink(userProps: IWithLinkOptions<IViewProps>): ILinkHooks {
-  const { url, onPress, ...rest } = userProps;
+/**
+ * A function which determines if a set of styles should be applied to the component given the current state and props of the link.
+ *
+ * @param layer The name of the state that is being checked for
+ * @param state The current state of the link
+ * @param userProps The props that were passed into the link
+ * @returns Whether the styles that are assigned to the layer should be applied to the link
+ */
+export const linkLookup = (layer: string, state: LinkState, userProps: LinkProps): boolean => {
+  return state[layer] || userProps[layer] || layer === userProps['appearance'];
+};
 
-  const [linkState, setLinkState] = React.useState({ visited: false });
-  const linkOnPress = React.useCallback(
-    (e) => {
-      setLinkState({ visited: true });
-      if (url) {
-        Linking.openURL(url as string);
-      } else if (onPress) {
-        onPress(e);
-      }
-    },
-    [setLinkState, url, onPress],
-  );
-  const pressable = useAsPressable({ onPress: linkOnPress, ...rest });
-  const onKeyUp = useKeyCallback(linkOnPress, ' ', 'Enter');
-
-  const newState = {
-    ...pressable.state,
-    ...linkState,
-  };
-
-  const newProps = {
-    ...userProps,
-    ...pressable.props,
-    onKeyUp,
-  };
-
-  return [newProps, newState];
-}
-
-export const Link = compose<ILinkType>({
+export const Link = compose<LinkType>({
   displayName: linkName,
-  settings,
-  usePrepareProps: (userProps: ILinkProps, useStyling: IUseComposeStyling<ILinkType>): ILinkRenderData => {
-    const { content, onAccessibilityTap, ...rest } = userProps;
-
-    const [linkProps, linkState] = useAsLink(rest);
-    const onAccTap = onAccessibilityTap ? onAccessibilityTap : linkProps.onPress;
-
-    const info = { content: !!content };
-
-    const linkRef = useViewCommandFocus(userProps.componentRef);
-
-    // grab the styling information, referencing the state as well as the props
-    const styleProps = useStyling(userProps, (override: string) => linkState[override] || userProps[override]);
-
-    // create the merged slot props
-    const slotProps = mergeSettings<ILinkSlotProps>(styleProps, {
-      root: { ...linkProps, ref: linkRef, onAccessibilityTap: onAccTap },
-      content: { children: content },
-    });
-
-    return { slotProps, state: { ...linkState, ...info } };
-  },
-  render: (Slots: ISlots<ILinkSlotProps>, renderData: ILinkRenderData, ...children: React.ReactNode[]) => {
-    const content = renderData.state && renderData.state.content;
-
-    return children && children.length && children.length === 1 && children[0] !== undefined ? (
-      <Slots.root>
-        {content && <Slots.content />}
-        {children}
-      </Slots.root>
-    ) : (
-      <Slots.root>{content && <Slots.content />}</Slots.root>
-    );
-  },
+  ...stylingSettings,
   slots: {
     root: View,
     content: Text,
   },
-  styles: {
-    root: [],
-    content: [foregroundColorTokens, textTokens, borderTokens],
+  useRender: (userProps: LinkProps, useSlots: UseSlots<LinkType>) => {
+    const link = useLink(userProps);
+    // grab the styled slots
+    const Slots = useSlots(userProps, (layer) => linkLookup(layer, link.state, userProps));
+    // now return the handler for finishing render
+    return (final: LinkProps, ...children: React.ReactNode[]) => {
+      // the event fires twice due to native's implementation of inline link
+      const { inline, ...mergedProps } = mergeProps(link.props, final);
+
+      // RN Core has a bug where Text in Text is not keyboard accessible. Issues - #32004, #35194.
+      // This is a workaround for the issue. Once those issues are resolved, supportsA11yTextInText can be removed.
+      const supportsA11yTextInText = Platform.OS !== 'android';
+
+      return supportsA11yTextInText && (inline || mergedProps.selectable) ? (
+        <Slots.content {...mergedProps}>{children}</Slots.content>
+      ) : (
+        <Slots.root {...mergedProps}>
+          <Slots.content focusable={false}>{children}</Slots.content>
+        </Slots.root>
+      );
+    };
   },
 });
-
-export default Link;

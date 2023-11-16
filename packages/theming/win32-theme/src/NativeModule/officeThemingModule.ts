@@ -1,5 +1,6 @@
-import type { NativeModule } from 'react-native';
-import { ColorValue, OfficePalette, Typography } from '@fluentui-react-native/theme-types';
+import type { NativeModule, ColorValue } from 'react-native';
+
+import type { OfficePalette, Typography } from '@fluentui-react-native/theme-types';
 
 export type PlatformDefaultsChangedArgs = { hostThemeSetting: string };
 export type PlatformDefaultsChangedCallback = (args?: PlatformDefaultsChangedArgs) => void;
@@ -25,7 +26,7 @@ export interface NativeColorNames {
 
 export interface OfficeThemingModule extends NativeModule {
   getPalette(palette?: string): OfficePalette | CxxException;
-  typography: object;
+  typography: object; // eslint-disable-line @typescript-eslint/ban-types
   fluentTypography: Typography;
   ramps: NativeColorRamps;
   rampNames: NativeColorNames;

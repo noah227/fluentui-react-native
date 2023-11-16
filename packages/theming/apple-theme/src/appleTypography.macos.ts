@@ -1,4 +1,4 @@
-import { FontSize, FontSizes, FontWeightValue, Typography, Variants } from '@fluentui-react-native/theme-types';
+import type { FontSize, FontSizes, FontWeightValue, Typography, Variants } from '@fluentui-react-native/theme-types';
 
 /**
  * The Typography is designed to match the styles defined in the Apple HIG:
@@ -34,6 +34,7 @@ export function fallbackAppleTypography(): Typography {
       secondary: 'System',
       cursive: 'System',
       monospace: 'System',
+      numeric: 'System',
       sansSerif: 'System',
       serif: 'System',
     },
@@ -51,6 +52,20 @@ export function fallbackAppleTypography(): Typography {
       heroSemibold: { face: 'primary', size: 'hero', weight: '700' },
       heroLargeStandard: { face: 'primary', size: 'heroLarge', weight: '400' },
       heroLargeSemibold: { face: 'primary', size: 'heroLarge', weight: '700' },
+      // mocked out
+      caption1: { face: 'primary', size: 'caption', weight: '500' },
+      body1: { face: 'primary', size: 'secondary', weight: '400' },
+      body1Strong: { face: 'primary', size: 'secondary', weight: '600' },
+      body2: { face: 'primary', size: 'body', weight: '400' },
+      body2Strong: { face: 'primary', size: 'body', weight: '600' },
+      subtitle1: { face: 'primary', size: 'header', weight: '700' },
+      subtitle1Strong: { face: 'primary', size: 'header', weight: '800' },
+      subtitle2: { face: 'primary', size: 'subheader', weight: '400' },
+      subtitle2Strong: { face: 'primary', size: 'subheader', weight: '600' },
+      title1: { face: 'primary', size: 'hero', weight: '400' },
+      title1Strong: { face: 'primary', size: 'hero', weight: '700' },
+      largeTitle: { face: 'primary', size: 'heroLarge', weight: '400' },
+      display: { face: 'primary', size: 'heroLarge', weight: '700' },
     } as Variants,
   };
 

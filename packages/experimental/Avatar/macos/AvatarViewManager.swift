@@ -1,7 +1,7 @@
 import Foundation
 import FluentUI
 
-@objc(MSFAvatarViewManager)
+@objc(FRNAvatarViewManager)
 class AvatarViewManager: RCTViewManager {
 	override func view()->NSView! {
 		let avatarView = AvatarView(avatarSize: 72)
@@ -17,12 +17,13 @@ class AvatarViewManager: RCTViewManager {
 	override func constantsToExport() -> [AnyHashable : Any]! {
 		return [
 			"sizes" : [
-				"xSmall" : 16,
-				"small" : 24,
-				"medium" : 32,
-				"large" : 40,
-				"xLarge" : 52,
-				"xxLarge" : 72
+				"size16" : 16,
+				"size20" : 20,
+				"size24" : 24,
+				"size32" : 32,
+				"size40" : 40,
+				"size56" : 56,
+				"size72" : 72,
 			]
 		]
 	}

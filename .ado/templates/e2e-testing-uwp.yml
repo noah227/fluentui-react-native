@@ -1,4 +1,9 @@
 steps:
+  - script: |
+      yarn bundle:windows
+    workingDirectory: apps/fluent-tester
+    displayName: 'yarn bundle'
+
   # WinAppDriver 1.2 is being deployed across MS hosted agents. appium-windows-driver is tied to a specific version of WinAppDriver,
   # failing if a hash is mismatched. The latest current available package supports 1.2rc.
   # Uninstall WinAppDriver 1.2.1 if installed and instead install WinAppDriver 1.1 for now
@@ -6,52 +11,17 @@ steps:
       Invoke-WebRequest https://github.com/microsoft/WinAppDriver/releases/download/v1.1/WindowsApplicationDriver.msi -OutFile $(Agent.TempDirectory)\WinAppDriver.msi
       Start-Process msiexec -ArgumentList "/quiet","/x","{087BBF93-D9E3-4D27-BDBE-9C702E0066FC}" -Verb runAs -Wait
       Start-Process msiexec -ArgumentList "/quiet","/i","$(Agent.TempDirectory)\WinAppDriver.msi" -Verb runAs -Wait
-    displayName: Replace WinAppDriver 1.2.1 with WinAppDriver 1.1
+    displayName: Replace WinAppDriver 1.2.99 with WinAppDriver 1.1
 
   - script: |
-      yarn bundle
-    workingDirectory: apps\windows
-    displayName: yarn bundle
-
-  - task: DownloadSecureFile@1
-    name: UwpCertificate
-    inputs:
-      secureFile: FluentTester_TemporaryKey.pfx
-    displayName: "Download UWP App Certificate"
-
-  - powershell: |
-      certutil –f –p password –importpfx $(UwpCertificate.secureFilePath)
-    displayName: "Add Certificate to Personal Store"
-
-  - task: DownloadSecureFile@1
-    name: AzureCredentials
-    inputs:
-      secureFile: "installcredprovider.ps1"
-    displayName: "Download Azure Credentials Plugin for NuGet"
-
-  - task: PowerShell@2
-    inputs:
-      filePath: $(AzureCredentials.secureFilePath)
-      arguments: "-AddNetfx -Force"
-    displayName: "Install Azure Credentials Plugin for NuGet"
+      yarn install-windows-test-app
+    workingDirectory: apps\fluent-tester
+    displayName: 'generate UWP app'
 
   - script: |
-      mkdir windows\target
-      mkdir windows\target\x64
-      mklink /J windows\target\x64\Release windows\x64\Release\FluentTester
-    workingDirectory: apps\windows
-    displayName: "Workaround RNW CLI bug"
-
-  - script: |
-      yarn windows --logging --release --arch x64
-    workingDirectory: apps\windows
-    displayName: "run UWP app"
-
-  # Kill FluentTester, leave server up and running. This was the only way I could get the server continuously running
-  # as a separate process.
-  - powershell: |
-      Stop-Process -Name FluentTester
-    displayName: "Kill FluentTester Process"
+      yarn windows --arch x64 --logging --no-packager --no-launch
+    workingDirectory: apps\fluent-tester
+    displayName: 'build UWP app'
 
   # Creates a variable that determines whether the previous build tasks succeeded.
   # Usage: We want the tasks that generate reports to run for both passing/failing E2E testing tasks. In order to do so, we need to make
@@ -59,16 +29,22 @@ steps:
   # E2E testing failures. Thus, if this variable != "Success", we know the build failed, and to not run the reporting tasks.
   - task: PowerShell@2
     inputs:
-      targetType: "inline"
+      targetType: 'inline'
       script: |
         Write-Host "##vso[task.setvariable variable=task.Build.status]Success"
     condition: succeeded()
-    displayName: "Create success build variable"
+    displayName: 'Create success build variable'
 
   - script: |
-      yarn e2etest
-    workingDirectory: apps\windows
-    displayName: "run E2E UWP tests"
+      yarn appium driver install --source=npm appium-windows-driver
+    workingDirectory: apps/E2E
+    displayName: 'Install appium driver'
+    condition: succeeded()
+
+  - script: |
+      yarn e2etest:windows
+    workingDirectory: apps\E2E
+    displayName: 'run E2E UWP tests [test]'
     condition: succeeded()
 
   # The following condition (using task.Build.status variable) make it so the reports generate even if the E2E tasks fails,
@@ -78,3 +54,4 @@ steps:
       applicationType: UWP
       platform: windows
       buildArtifacts: variables['task.Build.status']
+      directory: $(Build.SourcesDirectory)/apps/E2E

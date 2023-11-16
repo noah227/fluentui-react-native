@@ -2,7 +2,7 @@
  * A collection of internal types from react-native that are not currently exposed in TypeScript
  */
 
-import * as React from 'react';
+import type * as React from 'react';
 
 export type Rect = Readonly<{
   bottom?: number;
@@ -41,6 +41,7 @@ export interface ComponentMethods<Props> {
 /**
  * temporary port of changes that are in flight for the react and react-native types definition
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type AbstractComponent<Config extends {}, Instance = unknown> =
   // Either a function component that has a specific return type:
   | (React.FunctionComponent<Config> & ((props: React.PropsWithChildren<Config>, context?: any) => Instance))
@@ -58,8 +59,9 @@ export type NativeMethods = {
   measureLayout(
     relativeToNativeNode: number | React.ElementRef<HostComponent<any>>,
     onSuccess: MeasureLayoutOnSuccessCallback,
-    onFail?: () => void
+    onFail?: () => void,
   ): void;
+  // eslint-disable-next-line @typescript-eslint/ban-types
   setNativeProps(nativeProps: object): void;
 };
 

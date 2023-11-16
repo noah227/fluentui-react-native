@@ -1,11 +1,27 @@
+/** @jsxRuntime classic */
 /** @jsx withSlots */
 import * as React from 'react';
-import StackItem from './StackItem/StackItem';
-import { StackProps, stackName, StackType, StackTokens } from './Stack.types';
-import { View, ViewProps } from 'react-native';
+import { View } from 'react-native';
+import type { ViewProps } from 'react-native';
+
 import { filterViewProps } from '@fluentui-react-native/adapters';
-import { compose, withSlots, mergeProps, UseSlots, getMemoCache } from '@fluentui-react-native/framework';
+import type { UseSlots } from '@fluentui-react-native/framework';
+import { compose, withSlots, mergeProps, getMemoCache } from '@fluentui-react-native/framework';
+
 import { stylingSettings } from './Stack.styling';
+import { stackName } from './Stack.types';
+import type { StackProps, StackType, StackTokens } from './Stack.types';
+import StackItem from './StackItem/StackItem';
+
+// Needed for TS to understand that __jsiExecutorDescription exists.
+declare global {
+  /* eslint-disable-next-line @typescript-eslint/no-namespace*/
+  namespace NodeJS {
+    interface Global {
+      __jsiExecutorDescription: any;
+    }
+  }
+}
 
 const mixinCache = getMemoCache<ViewProps>();
 
@@ -37,14 +53,14 @@ export const Stack = compose<StackType>({
   filters: {
     root: filterViewProps,
   },
-  render: (props: StackProps, useSlots: UseSlots<StackType>) => {
+  useRender: (props: StackProps, useSlots: UseSlots<StackType>) => {
     const { gap, horizontal, wrap, ...rest } = props;
     const Slots = useSlots(props);
     return (final: StackProps, ...children: React.ReactNode[]) => {
-      if (gap && gap > 0 && children) {
+      if (gap && gap > 0 && children && global.__jsiExecutorDescription !== 'ChakraRuntime') {
         const mixinProps = getMixinProps(horizontal, gap);
 
-        /* eslint-disable @typescript-eslint/ban-ts-ignore */
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore - TODO, fix typing error
         children = React.Children.map(children, (child: React.ReactChild, index: number) => {
           if (React.isValidElement(child) && index > 0) {

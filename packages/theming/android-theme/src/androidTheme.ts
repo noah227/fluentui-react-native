@@ -1,8 +1,11 @@
-import { Spacing, Theme } from '@fluentui-react-native/theme-types';
-import { getFluentUIAndroidPalette } from './androidPalette';
-import { paletteFromAndroidColors } from './androidTheme.colors';
+import { memoize } from '@fluentui-react-native/memo-cache';
+import type { Spacing, Theme } from '@fluentui-react-native/theme-types';
+
+import { androidShadows } from './androidShadows';
 import { androidTypography } from './androidTypography';
-import { getAndroidPalette } from './androidBaseColors';
+import { getAndroidPalette } from './colorsBase';
+import { getFluentUIAndroidPalette } from './colorsSemantic';
+import { paletteFromAndroidColors } from './colorsTokens';
 
 export function androidSpacing(): Spacing {
   return {
@@ -15,22 +18,34 @@ export function androidSpacing(): Spacing {
 }
 
 export const androidComponents = {
-  Button: {
-    tokens: {
-      borderRadius: 4,
-      borderWidth: 1,
-      minHeight: 48,
-      minWidth: 92,
+  Checkbox: {
+    checkbox: {
+      style: {
+        borderWidth: 2,
+        minHeight: 18,
+        minWidth: 18,
+      },
+    },
+    checkmarkIcon: {
+      width: 14,
+      height: 10,
+      style: {
+        marginVertical: 4,
+        marginHorizontal: 2,
+      },
     },
   },
 };
 
-export function getAndroidTheme(appearance: 'light' | 'dark'): Theme {
+function getAndroidThemeWorker(appearance: 'light' | 'dark'): Theme {
   return {
     colors: paletteFromAndroidColors(getFluentUIAndroidPalette(getAndroidPalette(appearance))),
     typography: androidTypography(),
+    shadows: androidShadows(),
     spacing: androidSpacing(),
     components: androidComponents,
     host: { appearance },
   };
 }
+
+export const getAndroidTheme = memoize(getAndroidThemeWorker);

@@ -1,4 +1,6 @@
-import { ViewStyle, TextStyle, ImageStyle, StyleSheet } from 'react-native';
+import type { ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
+
 import { getMemoCache } from '@fluentui-react-native/memo-cache';
 
 /**
@@ -34,7 +36,9 @@ export type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle | ImageStyl
  *  const styles = getStyles(theme);
  *
  * @param generator - a function which will get run once per theme to create a cached style sheet.
+ *
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function themedStyleSheet<TStyles extends NamedStyles<TStyles>, TTheme extends object>(
   generator: (theme: TTheme) => NamedStyles<TStyles>,
 ): (theme: TTheme) => NamedStyles<TStyles> {

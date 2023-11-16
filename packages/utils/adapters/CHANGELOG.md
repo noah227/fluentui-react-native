@@ -1,8 +1,273 @@
 # Change Log - @fluentui-react-native/adapters
 
-This log was last generated on Sat, 06 Mar 2021 00:20:05 GMT and should not be manually modified.
+This log was last generated on Thu, 09 Nov 2023 02:39:07 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.12.0
+
+Thu, 09 Nov 2023 02:39:07 GMT
+
+### Minor changes
+
+- Update to react-native 0.72 (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.11.3
+
+Tue, 29 Aug 2023 22:56:32 GMT
+
+### Patches
+
+- add aria-multiselectable and aria-reaquired (krsiler@microsoft.com)
+
+## 0.11.2
+
+Mon, 14 Aug 2023 20:14:41 GMT
+
+### Patches
+
+- Add macOS prop `allowsVibrancy` (saadnajmi2@gmail.com)
+
+## 0.11.1
+
+Fri, 07 Jul 2023 20:45:11 GMT
+
+### Patches
+
+- Update macOS props (saadnajmi2@gmail.com)
+
+## 0.11.0
+
+Mon, 05 Jun 2023 19:26:26 GMT
+
+### Minor changes
+
+- Upgrade to React Native 0.71 (sanajmi@microsoft.com)
+
+## 0.10.2
+
+Fri, 24 Feb 2023 20:39:57 GMT
+
+### Patches
+
+- Order imports (78454019+lyzhan7@users.noreply.github.com)
+
+## 0.10.1
+
+Wed, 01 Feb 2023 22:33:14 GMT
+
+### Patches
+
+- Enable @typescript-eslint/consistent-type-imports (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.10.0
+
+Tue, 08 Nov 2022 22:18:43 GMT
+
+### Minor changes
+
+- add accessibilityLevel prop to Text on Win32 (krsiler@microsoft.com)
+
+## 0.9.3
+
+Fri, 14 Oct 2022 19:11:13 GMT
+
+### Patches
+
+- Fix build (ruaraki@microsoft.com)
+
+## 0.9.2
+
+Fri, 30 Sep 2022 00:54:34 GMT
+
+### Patches
+
+- Update react-native to 0.68 (krsiler@microsoft.com)
+
+## 0.9.1
+
+Wed, 14 Sep 2022 23:07:41 GMT
+
+### Patches
+
+- "Add accessibilityAccessKey as a prop to adapter" (ruaraki@microsoft.com)
+
+## 0.9.0
+
+Thu, 14 Jul 2022 18:09:50 GMT
+
+### Minor changes
+
+- Update to React Native 0.66 (sanajmi@microsoft.com)
+
+## 0.8.5
+
+Thu, 31 Mar 2022 07:27:47 GMT
+
+### Patches
+
+- Ban `export *` in index files for better tree-shakeability (4123478+tido64@users.noreply.github.com)
+
+## 0.8.4
+
+Mon, 07 Mar 2022 19:15:33 GMT
+
+### Patches
+
+- Pass tooltip to React Native macOS components (sanajmi@microsoft.com)
+
+## 0.8.3
+
+Fri, 18 Feb 2022 23:27:10 GMT
+
+### Patches
+
+- Remove web endpoint (ruaraki@microsoft.com)
+
+## 0.8.2
+
+Mon, 20 Dec 2021 22:56:00 GMT
+
+### Patches
+
+- Add repository property to all package.json files (ruaraki@microsoft.com)
+
+## 0.8.1
+
+Thu, 16 Dec 2021 19:10:30 GMT
+
+### Patches
+
+- Have web adapter export React Native core types (sanajmi@microsoft.com)
+- Fix build (ruaraki@microsoft.com)
+
+## 0.8.0
+
+Wed, 17 Nov 2021 19:28:07 GMT
+
+### Minor changes
+
+- Update to react-native 0.64 (afoxman@microsoft.com)
+
+## 0.7.5
+
+Tue, 19 Oct 2021 20:23:36 GMT
+
+### Patches
+
+- Fix build (ruaraki@microsoft.com)
+
+## 0.7.4
+
+Tue, 28 Sep 2021 21:08:25 GMT
+
+### Patches
+
+- Delete NativeButton (67026167+chiuam@users.noreply.github.com)
+
+## 0.7.3
+
+Tue, 21 Sep 2021 16:32:12 GMT
+
+### Patches
+
+- adding an adapter for macOS (67026167+chiuam@users.noreply.github.com)
+
+## 0.7.2
+
+Thu, 26 Aug 2021 21:02:08 GMT
+
+### Patches
+
+- Fix build (ruaraki@microsoft.com)
+
+## 0.7.1
+
+Thu, 26 Aug 2021 04:48:40 GMT
+
+### Patches
+
+- fix text truncation for radio button (67026167+chiuam@users.noreply.github.com)
+
+## 0.7.0
+
+Mon, 23 Aug 2021 23:35:47 GMT
+
+### Minor changes
+
+- react-native-windows to 0.64 (dake.3601@gmail.com)
+
+## 0.6.9
+
+Sat, 07 Aug 2021 00:40:04 GMT
+
+### Patches
+
+- enable usePressableState with stock Pressable component (jasonmo@microsoft.com)
+
+## 0.6.8
+
+Wed, 04 Aug 2021 06:26:25 GMT
+
+### Patches
+
+- radio group on macOS (67026167+chiuam@users.noreply.github.com)
+
+## 0.6.7
+
+Tue, 27 Jul 2021 22:17:20 GMT
+
+### Patches
+
+- add compressible utility and a snapshot test / demo to framework (jasonmo@microsoft.com)
+
+## 0.6.6
+
+Mon, 26 Jul 2021 20:41:04 GMT
+
+### Patches
+
+- add new use-slot package, move framework to consume that package (jasonmo@microsoft.com)
+
+## 0.6.5
+
+Sun, 25 Jul 2021 16:30:17 GMT
+
+### Patches
+
+- Fix build error (email not defined)
+
+## 0.6.4
+
+Thu, 22 Jul 2021 20:55:49 GMT
+
+### Patches
+
+- Correctly declare dependency on react-native (4123478+tido64@users.noreply.github.com)
+
+## 0.6.3
+
+Wed, 21 Jul 2021 22:55:40 GMT
+
+### Patches
+
+- expose use-tokens in framework package (jasonmo@microsoft.com)
+
+## 0.6.2
+
+Thu, 15 Jul 2021 20:35:35 GMT
+
+### Patches
+
+- Making the default adapters a union of all the platforms (safreibe@microsoft.com)
+
+## 0.6.1
+
+Fri, 18 Jun 2021 00:38:19 GMT
+
+### Patches
+
+- Apply prettier to utils, run (ruaraki@microsoft.com)
 
 ## 0.6.0
 

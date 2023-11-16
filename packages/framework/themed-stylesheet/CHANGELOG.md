@@ -1,8 +1,147 @@
 # Change Log - @fluentui-react-native/themed-stylesheet
 
-This log was last generated on Sat, 06 Mar 2021 00:20:05 GMT and should not be manually modified.
+This log was last generated on Thu, 09 Nov 2023 02:39:11 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.6.0
+
+Thu, 09 Nov 2023 02:39:11 GMT
+
+### Minor changes
+
+- Update to react-native 0.72 (30809111+acoates-ms@users.noreply.github.com)
+
+## 1.5.2
+
+Wed, 09 Aug 2023 22:02:15 GMT
+
+### Patches
+
+- Bump @fluentui-react-native/memo-cache to v1.3.1
+
+## 1.5.1
+
+Mon, 12 Jun 2023 17:46:44 GMT
+
+### Patches
+
+- Bump @fluentui-react-native/memo-cache to v1.3.0
+
+## 1.5.0
+
+Mon, 05 Jun 2023 19:26:25 GMT
+
+### Minor changes
+
+- Upgrade to React Native 0.71 (sanajmi@microsoft.com)
+- Bump @fluentui-react-native/memo-cache to v1.2.0
+
+## 1.4.3
+
+Fri, 24 Feb 2023 20:40:00 GMT
+
+### Patches
+
+- Order imports (78454019+lyzhan7@users.noreply.github.com)
+
+## 1.4.2
+
+Wed, 01 Feb 2023 22:33:17 GMT
+
+### Patches
+
+- Enable @typescript-eslint/consistent-type-imports (30809111+acoates-ms@users.noreply.github.com)
+- Bump @fluentui-react-native/memo-cache to v1.1.8
+
+## 1.4.1
+
+Fri, 30 Sep 2022 00:54:37 GMT
+
+### Patches
+
+- Update react-native to 0.68 (krsiler@microsoft.com)
+
+## 1.4.0
+
+Thu, 14 Jul 2022 18:09:50 GMT
+
+### Minor changes
+
+- Update to React Native 0.66 (sanajmi@microsoft.com)
+
+## 1.3.3
+
+Thu, 31 Mar 2022 07:27:48 GMT
+
+### Patches
+
+- Ban `export *` in index files for better tree-shakeability (4123478+tido64@users.noreply.github.com)
+
+## 1.3.2
+
+Mon, 20 Dec 2021 22:56:01 GMT
+
+### Patches
+
+- Add repository property to all package.json files (ruaraki@microsoft.com)
+- Bump @fluentui-react-native/memo-cache to v1.1.7
+
+## 1.3.1
+
+Sat, 18 Dec 2021 04:15:05 GMT
+
+### Patches
+
+- Bump @fluentui-react-native/memo-cache to v1.1.6
+
+## 1.3.0
+
+Wed, 17 Nov 2021 19:28:07 GMT
+
+### Minor changes
+
+- Update to react-native 0.64 (afoxman@microsoft.com)
+
+## 1.2.5
+
+Mon, 25 Oct 2021 19:24:43 GMT
+
+### Patches
+
+- Bump @fluentui-react-native/memo-cache to v1.1.5 (ruaraki@microsoft.com)
+
+## 1.2.4
+
+Tue, 28 Sep 2021 21:08:25 GMT
+
+### Patches
+
+- Bump @fluentui-react-native/memo-cache to v1.1.4 (67026167+chiuam@users.noreply.github.com)
+
+## 1.2.3
+
+Wed, 04 Aug 2021 06:26:25 GMT
+
+### Patches
+
+- radio group macOS (67026167+chiuam@users.noreply.github.com)
+
+## 1.2.2
+
+Wed, 21 Jul 2021 22:55:40 GMT
+
+### Patches
+
+- expose use-tokens in framework package (jasonmo@microsoft.com)
+
+## 1.2.1
+
+Fri, 18 Jun 2021 00:38:19 GMT
+
+### Patches
+
+- Apply prettier to framework, run (ruaraki@microsoft.com)
 
 ## 1.2.0
 

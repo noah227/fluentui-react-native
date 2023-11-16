@@ -1,8 +1,10 @@
-import * as React from 'react';
-import { ViewStyle, StyleProp } from 'react-native';
-import { IViewProps } from '@fluentui-react-native/adapters';
-import { IWithPressableOptions, IPressableState } from '@fluentui-react-native/interactive-hooks';
+import type * as React from 'react';
+import type { ViewStyle, StyleProp } from 'react-native';
 
+import type { IViewProps } from '@fluentui-react-native/adapters';
+import type { IWithPressableOptions, IPressableState } from '@fluentui-react-native/interactive-hooks';
+
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type IPressableProps<TBase extends object = IViewProps> = IWithPressableOptions<TBase> & {
   children?: IRenderChild<IPressableState>;
 
@@ -39,6 +41,7 @@ export type IRenderChild<T> = IChildAsFunction<T> | React.ReactNode;
  */
 export type IRenderStyle<T, S> = (state: T) => StyleProp<S>;
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type IPressableType<TBase extends object = IViewProps> = {
   props: IPressableProps<TBase>;
   slotProps: {

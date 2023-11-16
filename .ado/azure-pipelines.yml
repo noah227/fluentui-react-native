@@ -1,14 +1,14 @@
 pr:
-  - master
+  - main
 
 variables:
-  CI: true
+  - template: variables/vars.yml
 
 jobs:
-  # Dedicated task to build and bundle JS code, including jest tests, snapshot testing, and linting, because these things can be super
+  # Dedicated task to build JS code, including jest tests, snapshot testing, and linting, because these things can be super
   # time consuming they don't need to run on every CI pass, instead do a dedicated JS loop to make the platform specific tests start quicker
-  - job: BuildAndBundle
-    displayName: Build, test, and bundle JavaScript
+  - job: JSPR
+    displayName: JS PR
     pool:
       vmImage: 'ubuntu-latest'
     timeoutInMinutes: 60 # how long to run the job before automatically cancelling
@@ -21,22 +21,156 @@ jobs:
       - template: templates/setup-repo.yml
 
       - script: |
-          yarn buildci
-        displayName: 'yarn buildci'
-
-      - script: |
           yarn checkchange
         displayName: 'check change'
+
+      - script: |
+          yarn prettier
+        displayName: 'check prettier'
+
+      - script: |
+          yarn buildci
+        displayName: 'yarn buildci [test]'
 
       - script: |
           yarn check-for-changed-files
         displayName: 'verify API and Ensure Changed Files'
 
+  - job: AndroidPR
+    displayName: Android PR
+    pool:
+      vmImage: 'macos-11'
+    variables:
+      platform: 'android'
+    timeoutInMinutes: 60 # how long to run the job before automatically cancelling
+    cancelTimeoutInMinutes: 5 # how much time to give 'run always even if cancelled tasks' before killing them
+
+    steps:
+      - checkout: self
+        persistCredentials: true
+
+      # setup repo basics
+      - template: templates/setup-repo-min-build.yml
+
+      # package android bundle
+      - script: |
+          yarn bundle:$(platform)
+        workingDirectory: apps/fluent-tester
+        displayName: 'yarn bundle $(platform)'
+
+      # sets-up specifics for android dependency like NDK & emulator
+      - template: templates/android-dep-setup.yml
+
+      # builds a debug apk and runs E2E tests on it
+      - template: templates/e2e-testing-android.yml
+
+  - job: macOSPR
+    displayName: macOS PR
+    pool:
+      vmImage: $(VmImageApple)
+    variables:
+      platform: 'macos'
+    timeoutInMinutes: 60 # how long to run the job before automatically cancelling
+    cancelTimeoutInMinutes: 5 # how much time to give 'run always even if cancelled tasks' before killing them
+
+    steps:
+      - checkout: self
+        persistCredentials: true
+
+      - template: templates/setup-repo-min-build.yml
+
+      - script: |
+          yarn bundle:macos
+        workingDirectory: apps/fluent-tester
+        displayName: 'yarn bundle macos'
+
+      - bash: |
+          echo "pod install $(platform)"
+          pod install
+        workingDirectory: apps/fluent-tester/$(platform)
+        displayName: 'pod install $(platform)'
+
+      - bash: |
+          sudo xcode-select --switch '$(xcode_path)'
+        displayName: Switch Xcode version $(xcode_version)
+        failOnStderr: true
+
+      - script: |
+          brew install xcbeautify
+        displayName: 'Install xcbeautify'
+
+      - bash: |
+          echo "yarn $(platform)"
+          yarn $(platform)
+        workingDirectory: apps/fluent-tester
+        displayName: 'yarn $(platform)'
+
+      - template: templates/e2e-testing-macos.yml
+
+  - job: iOSPR
+    displayName: iOS PR
+    pool:
+      vmImage: $(VmImageApple)
+    variables:
+      platform: 'ios'
+    timeoutInMinutes: 60 # how long to run the job before automatically cancelling
+    cancelTimeoutInMinutes: 5 # how much time to give 'run always even if cancelled tasks' before killing them
+
+    steps:
+      - checkout: self
+        persistCredentials: true
+
+      - template: templates/setup-repo-min-build.yml
+
+      - script: |
+          yarn bundle:ios
+        workingDirectory: apps/fluent-tester
+        displayName: 'yarn bundle ios'
+
+      - bash: |
+          echo "pod install $(platform)"
+          pod install
+        workingDirectory: apps/fluent-tester/$(platform)
+        displayName: 'pod install $(platform)'
+
+      - bash: |
+          sudo xcode-select --switch '$(xcode_path)'
+        displayName: Switch Xcode version $(xcode_version)
+        failOnStderr: true
+
+      - script: |
+          brew install xcbeautify
+        displayName: 'Install xcbeautify'
+
+      - script: |
+          xcrun simctl list
+        displayName: 'List Simulators'
+
+      - script: |
+          xcrun --sdk iphonesimulator --show-sdk-version
+        displayName: 'Determine iOS SDK version'
+
+      # - script: |
+      #     NEW_DEVICE=$(xcrun simctl create "Test Phone" "$(ios_simulator)" iOS$(ios_version))
+      #     echo "🤖 Created ${NEW_DEVICE}"
+      #     xcrun simctl boot ${NEW_DEVICE}
+      #   displayName: 'Boot Simulator'
+
+      - bash: |
+          echo "yarn $(platform)"
+          yarn $(platform) --simulator "$(ios_simulator)"
+        workingDirectory: apps/fluent-tester
+        displayName: 'yarn $(platform)'
+
+      - template: templates/e2e-testing-ios.yml
+
   # Windows bundling and end to end testing
   - job: WindowsPR
     displayName: Windows PR
     pool:
-      vmImage: 'windows-2019'
+      name: rnw-pool-4
+      demands:
+        - ImageOverride -equals rnw-img-vs2022
     timeoutInMinutes: 60 # how long to run the job before automatically cancelling
     cancelTimeoutInMinutes: 5 # how much time to give 'run always even if cancelled tasks' before killing them
 
@@ -45,6 +179,7 @@ jobs:
     steps:
       - checkout: self
         persistCredentials: true
+        fetchDepth: 5
 
       # yarn and minimal build to get set up
       - template: templates/setup-repo-min-build.yml
@@ -70,54 +205,10 @@ jobs:
       # bundle win32 and do end to end tests
       - template: templates/e2e-testing-win32.yml
 
-  - job: ApplePR
-    displayName: Apple PR
-    pool:
-      vmImage: 'macos-10.15'
-      demands: ['xcode', 'sh', 'npm']
-    timeoutInMinutes: 60 # how long to run the job before automatically cancelling
-    cancelTimeoutInMinutes: 5 # how much time to give 'run always even if cancelled tasks' before killing them
-    strategy:
-      maxParallel: 4
-      matrix:
-        ios:
-          relative_directory: 'ios'
-        macos:
-          relative_directory: 'macos'
-
-    steps:
-      - checkout: self
-        persistCredentials: true
-
-      # Clean Derived Data
-      - script: |
-          rm -rf $(Build.Repository.LocalPath)/DerivedData
-        displayName: 'Clean DerivedData'
-
-      - script: |
-          sudo gem install cocoapods
-        displayName: 'Install Cocoapods Environment'
-
-      - template: templates/setup-repo-min-build.yml
-
-      - script: |
-          yarn bundle
-        workingDirectory: apps/$(relative_directory)
-        displayName: 'yarn bundle $(relative_directory)'
-
-      # Select proper Xcode version
-      - template: templates/apple-xcode-select.yml
-
-      - template: templates/apple-yarn-build.yml
-        parameters:
-          relative_directory: $(relative_directory)
-
-  - job: AndroidPR
-    displayName: Android PR
-    pool:
-      vmImage: 'macos-10.15'
-    variables:
-      relative_directory: 'android'
+  # Dedicated task to make sure link on repo are functional.
+  - job: TestLinks
+    displayName: Test repo links
+    pool: cxe-ubuntu-20-04-small
     timeoutInMinutes: 60 # how long to run the job before automatically cancelling
     cancelTimeoutInMinutes: 5 # how much time to give 'run always even if cancelled tasks' before killing them
 
@@ -125,24 +216,8 @@ jobs:
       - checkout: self
         persistCredentials: true
 
-      # setup repo basics
-      - template: templates/setup-repo-min-build.yml
+      - template: templates/setup-repo.yml
 
-      # package android bundle
       - script: |
-          yarn bundle
-        workingDirectory: apps/$(relative_directory)
-        displayName: 'yarn bundle $(relative_directory)'
-
-      # sets-up specifics for android dependency like NDK & emulator
-      - template: templates/android-dep-setup.yml
-
-      # build android apk and run available Instrumented test
-      - task: Gradle@2
-        inputs:
-          gradleWrapperFile: 'apps/$(relative_directory)/src/gradlew'
-          workingDirectory: 'apps/$(relative_directory)/src'
-          tasks: 'assembleDebug cAT'
-          publishJUnitResults: false
-          javaHomeOption: 'JDKVersion'
-          sonarQubeRunAnalysis: false
+          find . -name \*.md -not -name CHANGELOG.md -not -path '*/\node_modules/*' -print0 | xargs -0 -n1 yarn test-links -c `pwd`/.ado/markdown-link-check-config.json
+        displayName: 'testing links'

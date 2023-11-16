@@ -1,109 +1,140 @@
+/** @jsxRuntime classic */
 /** @jsx withSlots */
 import * as React from 'react';
-import { Image, View } from 'react-native';
-import { IButtonSlotProps, IButtonState, IButtonProps, IButtonRenderData, buttonName, IButtonType } from './Button.types';
-import { compose, IUseComposeStyling } from '@uifabricshared/foundation-compose';
-import { ISlots, withSlots } from '@uifabricshared/foundation-composable';
-import { Text } from '@fluentui-react-native/text';
-import { settings } from './Button.settings';
-import { backgroundColorTokens, borderTokens, textTokens, foregroundColorTokens, getPaletteFromTheme } from '@fluentui-react-native/tokens';
-import { filterViewProps } from '@fluentui-react-native/adapters';
-import { mergeSettings } from '@uifabricshared/foundation-settings';
-import { useAsPressable, useKeyCallback, useViewCommandFocus } from '@fluentui-react-native/interactive-hooks';
-import { Icon, RasterImageIconProps, IconProps } from '@fluentui-react-native/icon';
+import { Platform, Pressable, View } from 'react-native';
 
-function createIconProps(src: number | string | IconProps) {
-  if (src === undefined) return null;
+import { ActivityIndicator } from '@fluentui-react-native/experimental-activity-indicator';
+import type { UseSlots } from '@fluentui-react-native/framework';
+import { compose, memoize, mergeProps, withSlots } from '@fluentui-react-native/framework';
+import { Icon, createIconProps } from '@fluentui-react-native/icon';
+import type { IPressableState } from '@fluentui-react-native/interactive-hooks';
+import { TextV1 as Text } from '@fluentui-react-native/text';
 
-  if (typeof src === 'number') {
-    const rasterProps: RasterImageIconProps = { src: src };
-    const asset = Image.resolveAssetSource(+src);
+import { stylingSettings, getDefaultSize, getPlatformSpecificAppearance } from './Button.styling';
+import { buttonName } from './Button.types';
+import type { ButtonType, ButtonProps } from './Button.types';
+import { extractOuterStylePropsAndroid } from './ExtractStyle.android';
+import { useButton } from './useButton';
 
-    return {
-      rasterImageSource: rasterProps,
-      width: asset.width,
-      height: asset.height,
-    };
-  }
-  else if (typeof src === 'string') {
-    const rasterProps: RasterImageIconProps = { src: { uri: src as string } };
-    return { rasterImageSource: rasterProps };
-  }
-  else {
-    return src as IconProps;
-  }
-}
+/**
+ * A function which determines if a set of styles should be applied to the component given the current state and props of the button.
+ *
+ * @param layer The name of the state that is being checked for
+ * @param state The current state of the button
+ * @param userProps The props that were passed into the button
+ * @returns Whether the styles that are assigned to the layer should be applied to the button
+ */
+export const buttonLookup = (layer: string, state: IPressableState, userProps: ButtonProps): boolean => {
+  return (
+    state[layer] ||
+    userProps[layer] ||
+    layer === getPlatformSpecificAppearance(userProps['appearance']) ||
+    layer === userProps['size'] ||
+    (!userProps['size'] && layer === getDefaultSize()) ||
+    layer === userProps['shape'] ||
+    (!userProps['shape'] && layer === 'rounded') ||
+    (layer === 'hovered' && state[layer] && !userProps.loading) ||
+    (layer === 'hasContent' && !userProps.iconOnly) ||
+    (layer === 'hasIconAfter' && (userProps.icon || userProps.loading) && userProps.iconPosition === 'after') ||
+    (layer === 'hasIconBefore' && (userProps.icon || userProps.loading) && (!userProps.iconPosition || userProps.iconPosition === 'before'))
+  );
+};
 
-export const Button = compose<IButtonType>({
+export const Button = compose<ButtonType>({
   displayName: buttonName,
-  usePrepareProps: (userProps: IButtonProps, useStyling: IUseComposeStyling<IButtonType>) => {
-    const {
-      icon,
-      content,
-      onAccessibilityTap = userProps.onClick,
-      accessibilityLabel = userProps.content,
-      testID,
-      onClick,
-      ...rest
-    } = userProps;
-    // attach the pressable state handlers
-    const pressable = useAsPressable({ ...rest, onPress: onClick });
-    const onKeyUp = useKeyCallback(onClick, ' ', 'Enter');
-    // set up state
-    const state: IButtonState = {
-      info: {
-        ...pressable.state,
-        disabled: !!userProps.disabled,
-        content: !!content,
-        icon: !!icon,
-      },
-    };
-
-    const buttonRef = useViewCommandFocus(userProps.componentRef);
-    // grab the styling information, referencing the state as well as the props
-    const styleProps = useStyling(userProps, (override: string) => state.info[override] || userProps[override]);
-    // create the merged slot props
-
-    const slotProps = mergeSettings<IButtonSlotProps>(styleProps, {
-      root: {
-        ...pressable.props,
-        ref: buttonRef,
-        onAccessibilityTap: onAccessibilityTap,
-        accessibilityLabel: accessibilityLabel,
-        accessibilityState: { disabled: state.info.disabled },
-        onKeyUp: onKeyUp,
-      },
-      content: { children: content, testID: testID },
-      icon: createIconProps(icon)
-    });
-
-    return { slotProps, state };
-  },
-  settings,
-  render: (Slots: ISlots<IButtonSlotProps>, renderData: IButtonRenderData, ...children: React.ReactNode[]) => {
-    const info = renderData.state!.info;
-    return (
-      <Slots.root>
-        <Slots.stack>
-          {info.icon && <Slots.icon />}
-          {info.content && <Slots.content />}
-          {children}
-        </Slots.stack>
-      </Slots.root>
-    );
-  },
+  ...stylingSettings,
   slots: {
-    root: View,
-    stack: { slotType: View, filter: filterViewProps },
-    icon: { slotType: Icon as React.ComponentType<object> },
+    root: Pressable,
+    rippleContainer: Platform.OS === 'android' && View,
+    focusInnerBorder: Platform.OS === ('win32' as any) && View,
+    icon: Icon,
     content: Text,
   },
-  styles: {
-    root: [backgroundColorTokens, borderTokens],
-    stack: [],
-    icon: [{ source: 'iconColor', lookup: getPaletteFromTheme, target: 'color' }],
-    content: [textTokens, foregroundColorTokens],
+  useRender: (userProps: ButtonProps, useSlots: UseSlots<ButtonType>) => {
+    const button = useButton(userProps);
+
+    const iconProps = createIconProps(userProps.icon);
+    // grab the styled slots
+    const Slots = useSlots(userProps, (layer) => buttonLookup(layer, button.state, userProps));
+
+    // now return the handler for finishing render
+    return (final: ButtonProps, ...children: React.ReactNode[]) => {
+      const { icon, iconOnly, iconPosition, loading, accessibilityLabel, ...mergedProps } = mergeProps(button.props, final);
+
+      const shouldShowIcon = !loading && icon;
+      if (__DEV__ && iconOnly) {
+        React.Children.forEach(children, (child) => {
+          if (typeof child === 'string') {
+            console.warn('iconOnly should not be set when Button has content.');
+          }
+        });
+      }
+
+      let childText = '';
+      if (accessibilityLabel === undefined) {
+        React.Children.forEach(children, (child) => {
+          if (typeof child === 'string') {
+            childText = child; // We only automatically support the one child string.
+          }
+        });
+      }
+
+      const label = accessibilityLabel ?? childText;
+      const buttonContent = (
+        <React.Fragment>
+          {loading && <ActivityIndicator />}
+          {shouldShowIcon && iconPosition === 'before' && <Slots.icon {...iconProps} accessible={false} />}
+          {React.Children.map(children, (child) =>
+            typeof child === 'string' ? (
+              <Slots.content accessible={false} key="content">
+                {child}
+              </Slots.content>
+            ) : (
+              child
+            ),
+          )}
+          {shouldShowIcon && iconPosition === 'after' && <Slots.icon {...iconProps} accessible={false} />}
+        </React.Fragment>
+      );
+
+      const hasRipple = Platform.OS === 'android';
+      if (hasRipple) {
+        const [outerStyleProps, innerStyleProps] = extractOuterStylePropsAndroid(mergedProps.style);
+        return (
+          <Slots.rippleContainer style={outerStyleProps}>
+            {/* RN Pressable needs to be wrapped with a root view to support curved edges */}
+            <Slots.root accessibilityLabel={label} {...mergedProps} style={innerStyleProps}>
+              {buttonContent}
+            </Slots.root>
+          </Slots.rippleContainer>
+        );
+      } else {
+        return (
+          <Slots.root {...mergedProps} accessibilityLabel={label}>
+            {buttonContent}
+            {button.state.focused &&
+              button.state.measuredHeight &&
+              button.state.measuredWidth &&
+              button.state.shouldUseTwoToneFocusBorder && (
+                <Slots.focusInnerBorder
+                  style={getFocusBorderStyle(button.state.measuredHeight, button.state.measuredWidth)}
+                  accessible={false}
+                  focusable={false}
+                />
+              )}
+          </Slots.root>
+        );
+      }
+    };
   },
 });
 
-export default Button;
+const getFocusBorderStyleWorker = (height: number, width: number) => {
+  const adjustment = 2; // width of border * 2
+
+  return {
+    height: height - adjustment,
+    width: width - adjustment,
+  };
+};
+export const getFocusBorderStyle = memoize(getFocusBorderStyleWorker);

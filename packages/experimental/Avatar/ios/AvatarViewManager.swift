@@ -1,26 +1,29 @@
 import Foundation
 import FluentUI
 
-@objc(MSFAvatarViewManager)
+@objc(FRNAvatarViewManager)
 class AvatarViewManager: RCTViewManager {
+
 	override func view()->UIView! {
-		let avatarView = AvatarView(avatarSize: .small)
-		return avatarView
+		return MSFAvatar()
 	}
 
 	override class func requiresMainQueueSetup() -> Bool {
 		return true
 	}
 
+	// We export the sizes to pass to React Native as a hardcoded height/width for the component.
+	// In the future, these sizes should come from the token pipeline.
 	override func constantsToExport() -> [AnyHashable : Any]! {
 		return [
 			"sizes" : [
-				"xSmall" : AvatarSize.extraSmall.size.width,
-				"small" : AvatarSize.small.size.width,
-				"medium" : AvatarSize.medium.size.width,
-				"large" : AvatarSize.large.size.width,
-				"xLarge" : AvatarSize.extraLarge.size.width,
-				"xxLarge" : AvatarSize.extraExtraLarge.size.width
+				"size16" : 16,
+				"size20" : 20,
+				"size24" : 24,
+				"size32" : 32,
+				"size40" : 40,
+				"size56" : 56,
+				"size72" : 72,
 			]
 		]
 	}

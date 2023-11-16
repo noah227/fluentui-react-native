@@ -1,0 +1,1 @@
+export { useFontMetricsScaleFactors } from './useFontMetrics';

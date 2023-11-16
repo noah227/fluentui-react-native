@@ -1,9 +1,17 @@
-import { Theme, Spacing } from '@fluentui-react-native/theme-types';
+import { memoize } from '@fluentui-react-native/memo-cache';
+import type { Theme, Spacing } from '@fluentui-react-native/theme-types';
+
 import { paletteFromAppleColors } from './appleColors.ios';
+import { iOSShadows } from './appleShadows.ios';
 import { appleTypography } from './appleTypography.ios';
 
 function appleSpacing(): Spacing {
-  return { s2: '4px', s1: '8px', m: '16px', l1: '20px', l2: '32px' };
+  return {
+    s2: '4px',
+    s1: '8px',
+    l1: '20px',
+    l2: '32px',
+  };
 }
 
 const appleComponents = {
@@ -94,20 +102,42 @@ const appleComponents = {
       variant: 'bodyStandard',
     },
   },
+
+  Checkbox: {
+    root: {
+      style: {
+        minHeight: 20,
+        marginVertical: 2,
+      },
+    },
+    checkbox: {
+      style: {
+        borderRadius: 100,
+        minHeight: 24,
+        minWidth: 24,
+      },
+    },
+    checkmarkIcon: {
+      width: 8.5,
+      height: 7,
+      style: {
+        marginVertical: 8.5,
+        marginLeft: 8,
+        marginRight: 7,
+      },
+    },
+  },
 };
 
-export const BaseAppleLightThemeIOS: Theme = {
-  colors: paletteFromAppleColors(false),
-  typography: appleTypography(),
-  spacing: appleSpacing(),
-  components: appleComponents,
-  host: { appearance: 'light' },
-};
+function getBaseAppleThemeIOSWorker(isLightMode: boolean, isElevated: boolean): Theme {
+  return {
+    colors: paletteFromAppleColors(isLightMode, isElevated),
+    typography: appleTypography(),
+    shadows: iOSShadows(),
+    spacing: appleSpacing(),
+    components: appleComponents,
+    host: { appearance: isLightMode ? 'light' : 'dark' },
+  };
+}
 
-export const BaseAppleDarkThemeIOS: Theme = {
-  colors: paletteFromAppleColors(true),
-  typography: appleTypography(),
-  spacing: appleSpacing(),
-  components: appleComponents,
-  host: { appearance: 'dark' },
-};
+export const getBaseAppleThemeIOS = memoize(getBaseAppleThemeIOSWorker);

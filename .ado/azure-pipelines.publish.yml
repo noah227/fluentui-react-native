@@ -4,76 +4,114 @@ trigger:
   batch: true
   branches:
     include:
-      - master
+      - main
+      - releases/*
 
 pr: none
 
+parameters:
+  - name: skipNpmPublish
+    displayName: Skip Npm Publish
+    type: boolean
+    default: false
+  - name: skipGitPush
+    displayName: Skip Git Push
+    type: boolean
+    default: false
+  - name: skipNugetPublish
+    displayName: Skip Nuget Publish
+    type: boolean
+    default: false
+
 variables:
-  - group: 'NPM and Github Secrets'
+  - group: 'FluentUI React Native Secrets'
+  - group: InfoSec-SecurityResults
+  - name: tags
+    value: production,externalfacing
+  - template: variables/vars.yml
 
-jobs:
-  - job: NPMPublish
-    displayName: NPM Publish
+resources:
+  repositories:
+    - repository: OfficePipelineTemplates
+      type: git
+      name: 1ESPipelineTemplates/OfficePipelineTemplates
+      ref: refs/tags/release
+
+extends:
+  template: v1/Office.Official.PipelineTemplate.yml@OfficePipelineTemplates
+  parameters:
     pool:
-      vmImage: 'ubuntu-latest'
+      name: Azure-Pipelines-1ESPT-ExDShared
+      image: windows-latest
+      os: windows
+    sdl:
+      eslint:
+        configuration: 'recommended'
+        parser: '@typescript-eslint/parser'
+        parserOptions: 'sourceType:script\necmaVersion:2017'
+        customEnvironments: true
+        environmentsBrowser: true
+        environmentsEs6: true
+        environmentsNode: true
+    stages:
+      - stage: main
+        jobs:
+          - job: NPMPublish
+            displayName: NPM Publish
+            pool:
+              name: Azure-Pipelines-1ESPT-ExDShared
+              image: ubuntu-latest
+              os: linux
+            templateContext:
+              outputs:
+                - output: pipelineArtifact
+                  targetPath: $(System.DefaultWorkingDirectory)
+                  artifactName: dist
+            steps:
+              - template: .ado/templates/setup-repo.yml@self
 
-    steps:
-      - task: NodeTool@0
-        inputs:
-          versionSpec: '12.x'
-        displayName: 'Install Node.js'
+              - script: |
+                  git config user.name "UI-Fabric-RN-Bot"
+                  git config user.email "uifrnbot@microsoft.com"
+                  git remote set-url origin https://$(githubUser):$(githubPAT)@github.com/microsoft/ui-fabric-react-native.git
+                displayName: Git Authentication
 
-      - script: |
-          git config user.name "UI-Fabric-RN-Bot"
-          git config user.email "uifrnbot@microsoft.com"
-          git remote set-url origin https://$(githubUser):$(githubPAT)@github.com/microsoft/ui-fabric-react-native.git
-        displayName: Git Authentication
-      - template: templates/yarn-install.yml
+              - script: |
+                  yarn
+                displayName: 'yarn install'
 
-      - script: |
-          yarn test
-        displayName: 'yarn test'
+              - script: |
+                  yarn buildci
+                displayName: 'yarn buildci [test]'
 
-      - script: |
-          yarn publish:beachball -- -b origin/master -n $(npmAuth) --access public -y
-        displayName: 'Publish NPM Packages'
+              - script: |
+                  echo ##vso[task.setvariable variable=SkipNpmPublishArgs]--no-publish
+                displayName: Enable No-Publish (npm)
+                condition: ${{ parameters.skipNpmPublish }}
 
-  - job: NuGetPublish
-    displayName: NuGet Publish
-    pool:
-      vmImage: 'macos-10.15'
-      demands: ['xcode', 'sh', 'npm']
-    timeoutInMinutes: 90 # how long to run the job before automatically cancelling
-    cancelTimeoutInMinutes: 5 # how much time to give 'run always even if cancelled tasks' before killing them
+              - script: |
+                  echo ##vso[task.setvariable variable=SkipGitPushPublishArgs]--no-push
+                displayName: Enable No-Publish (git)
+                condition: ${{ parameters.skipGitPush }}
 
-    steps:
-      - checkout: self
-        persistCredentials: true
+              - script: |
+                  yarn publish:beachball $(SkipNpmPublishArgs) $(SkipGitPushPublishArgs) --access public --token $(npmAuth) -b origin/main -y
+                displayName: 'Publish NPM Packages (for main branch)'
+                condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
-      - template: templates/setup-repo-min-build.yml
+              - script: |
+                  yarn publish:beachball $(SkipNpmPublishArgs) $(SkipGitPushPublishArgs) --access public --token $(npmAuth) -y -t v${{ replace(variables['Build.SourceBranch'],'refs/heads/releases/','') }} -b origin/${{ replace(variables['Build.SourceBranch'],'refs/heads/','') }} --prerelease-prefix ${{ replace(variables['Build.SourceBranch'],'refs/heads/releases/','') }}
+                displayName: 'Publish NPM Packages (for other release branches)'
+                condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/main'))
 
-      # Clean Derived Data
-      - script: |
-          rm -rf $(Build.Repository.LocalPath)/DerivedData
-        displayName: 'Clean DerivedData'
+          - template: .ado/templates/apple-nuget-publish.yml@self
+            parameters:
+              skipNugetPublish: ${{ parameters.skipNugetPublish }}
 
-      - script: |
-          sudo gem install cocoapods
-        displayName: 'Install CocoaPods Environment'
+          - template: .ado/templates/win32-nuget-publish.yml@self
+            parameters:
+              skipNugetPublish: ${{ parameters.skipNugetPublish }}
 
-      - script: |
-          yarn bundle ios
-        workingDirectory: $(Build.Repository.LocalPath)/apps/ios
-        displayName: 'yarn bundle iOS'
-
-      - script: |
-          yarn bundle macos
-        workingDirectory: $(Build.Repository.LocalPath)/apps/macos
-        displayName: 'yarn bundle macOS'
-
-      # Select proper Xcode version
-      - template: templates/apple-xcode-select.yml
-
-      - template: templates/apple-xcode-build-static-libs.yml
-
-      - template: templates/nuget-publish.yml
+          - template: .ado/templates/e2e-dependency-nuget-publish.yml@self
+            parameters:
+              skipNugetPublish: ${{ parameters.skipNugetPublish }}

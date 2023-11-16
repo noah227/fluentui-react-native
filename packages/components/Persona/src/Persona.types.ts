@@ -1,7 +1,9 @@
-import { IPersonaCoinProps, IPersonaCoinTokens } from '@fluentui-react-native/persona-coin';
+import type { ColorValue } from 'react-native';
+
 import type { IViewProps, ITextProps } from '@fluentui-react-native/adapters';
-import { IRenderData } from '@uifabricshared/foundation-composable';
-import { FontTokens } from '@fluentui-react-native/tokens';
+import type { IPersonaCoinProps, IPersonaCoinTokens } from '@fluentui-react-native/persona-coin';
+import type { FontTokens } from '@fluentui-react-native/tokens';
+import type { IRenderData } from '@uifabricshared/foundation-composable';
 
 export const personaName = 'RNFPersona';
 
@@ -28,7 +30,7 @@ export interface IPersonaTokens extends Omit<IPersonaCoinTokens, 'backgroundColo
   verticalGap?: number;
   horizontalGap?: number;
 
-  coinBackgroundColor?: string;
+  coinBackgroundColor?: ColorValue;
 
   textFont?: FontTokens;
   secondaryFont?: FontTokens;

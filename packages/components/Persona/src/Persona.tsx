@@ -1,19 +1,25 @@
+/** @jsxRuntime classic */
 /** @jsx withSlots */
-import { compose, IUseComposeStyling } from '@uifabricshared/foundation-compose';
-import { IPersonaType, personaName, IPersonaSlotProps, IPersonaProps, IPersonaRenderData } from './Persona.types';
-import { settings } from './Persona.settings';
 import { View, Text } from 'react-native';
+
 import { filterViewProps } from '@fluentui-react-native/adapters';
 import { PersonaCoin } from '@fluentui-react-native/persona-coin';
-import { ISlots, withSlots, IRenderData } from '@uifabricshared/foundation-composable';
-import { mergeSettings } from '@uifabricshared/foundation-settings';
-import { buildRootStyle } from './Persona.tokens.root';
-import { buildTextStyle, buildTertiaryStyle, buildOptionalStyle, buildSecondaryStyle } from './Persona.tokens.texts';
-import { buildCoinStyle } from './Persona.tokens.coin';
 import { foregroundColorTokens } from '@fluentui-react-native/tokens';
-import { buildStackStyle } from './Persona.tokens.stack';
+import type { ISlots, IRenderData } from '@uifabricshared/foundation-composable';
+import { withSlots } from '@uifabricshared/foundation-composable';
+import type { IUseComposeStyling } from '@uifabricshared/foundation-compose';
+import { compose } from '@uifabricshared/foundation-compose';
+import { mergeSettings } from '@uifabricshared/foundation-settings';
 
-function usePrepareForProps(props: IPersonaProps, useStyling: IUseComposeStyling<IPersonaType>): IRenderData<IPersonaSlotProps, {}> {
+import { settings } from './Persona.settings';
+import { buildCoinStyle } from './Persona.tokens.coin';
+import { buildRootStyle } from './Persona.tokens.root';
+import { buildStackStyle } from './Persona.tokens.stack';
+import { buildTextStyle, buildTertiaryStyle, buildOptionalStyle, buildSecondaryStyle } from './Persona.tokens.texts';
+import { personaName } from './Persona.types';
+import type { IPersonaType, IPersonaSlotProps, IPersonaProps, IPersonaRenderData } from './Persona.types';
+
+function usePrepareForProps(props: IPersonaProps, useStyling: IUseComposeStyling<IPersonaType>): IRenderData<IPersonaSlotProps> {
   const {
     text,
     secondaryText,
@@ -31,7 +37,7 @@ function usePrepareForProps(props: IPersonaProps, useStyling: IUseComposeStyling
 
   const slotProps = mergeSettings<IPersonaType['slotProps']>(useStyling(props), {
     root: { ...rootProps },
-    coin: { size, coinColor, imageUrl, imageDescription, initials, presence, isOutOfOffice }
+    coin: { size, coinColor, imageUrl, imageDescription, initials, presence, isOutOfOffice },
   });
 
   return {
@@ -40,8 +46,8 @@ function usePrepareForProps(props: IPersonaProps, useStyling: IUseComposeStyling
       text,
       secondaryText,
       tertiaryText,
-      optionalText
-    }
+      optionalText,
+    },
   };
 }
 
@@ -72,14 +78,14 @@ export const Persona = compose<IPersonaType>({
   slots: {
     root: {
       slotType: View,
-      filter: filterViewProps
+      filter: filterViewProps,
     },
     coin: PersonaCoin,
     stack: View,
     text: Text,
     secondary: Text,
     tertiary: Text,
-    optional: Text
+    optional: Text,
   },
   styles: {
     root: [buildRootStyle],
@@ -88,6 +94,6 @@ export const Persona = compose<IPersonaType>({
     secondary: [buildSecondaryStyle],
     tertiary: [buildTertiaryStyle],
     optional: [buildOptionalStyle],
-    stack: [buildStackStyle]
-  }
+    stack: [buildStackStyle],
+  },
 });

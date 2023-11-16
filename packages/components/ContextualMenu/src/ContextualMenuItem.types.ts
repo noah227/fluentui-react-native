@@ -1,10 +1,12 @@
-import * as React from 'react';
-import { ViewProps, ImageProps } from 'react-native';
-import { IRenderData } from '@uifabricshared/foundation-composable';
-import { ITextProps } from '@fluentui-react-native/text';
-import { IPressableProps } from '@fluentui-react-native/pressable';
-import { FontTokens, IForegroundColorTokens, IBackgroundColorTokens, IBorderTokens } from '@fluentui-react-native/tokens';
-import { IFocusable, IPressableState } from '@fluentui-react-native/interactive-hooks';
+import type * as React from 'react';
+
+import type { IViewProps } from '@fluentui-react-native/adapters';
+import type { IconProps } from '@fluentui-react-native/icon';
+import type { IFocusable, IPressableState } from '@fluentui-react-native/interactive-hooks';
+import type { IPressableProps } from '@fluentui-react-native/pressable';
+import type { ITextProps } from '@fluentui-react-native/text';
+import type { FontTokens, IForegroundColorTokens, IBackgroundColorTokens, IBorderTokens } from '@fluentui-react-native/tokens';
+import type { IRenderData } from '@uifabricshared/foundation-composable';
 
 export const contextualMenuItemName = 'ContextualMenuItem';
 
@@ -19,7 +21,32 @@ export interface ContextualMenuItemState extends IPressableState {
   icon?: boolean;
 }
 
-export interface ContextualMenuItemTokens extends FontTokens, IForegroundColorTokens, IBackgroundColorTokens, IBorderTokens { }
+export interface ContextualMenuItemTokens extends FontTokens, IForegroundColorTokens, IBackgroundColorTokens, IBorderTokens {
+  /**
+   * The icon color.
+   */
+  iconColor?: string;
+
+  /**
+   * The icon color when hovering over the Button.
+   */
+  iconColorHovered?: string;
+
+  /**
+   * The icon color when the Button is being pressed.
+   */
+  iconColorPressed?: string;
+
+  /**
+   * The size of the icon.
+   */
+  iconSize?: number | string;
+
+  /**
+   * The weight of the lines used when drawing the icon.
+   */
+  iconWeight?: number;
+}
 
 export interface ContextualMenuItemProps extends Omit<IPressableProps, 'onPress'> {
   /*
@@ -31,10 +58,10 @@ export interface ContextualMenuItemProps extends Omit<IPressableProps, 'onPress'
    */
   text?: string;
 
-  /*
-   * Source URL or name of the icon to show on the ContextualMenuItem.
+  /**
+   * Source URL or name of the icon to show on the Button.
    */
-  icon?: string;
+  icon?: number | string | IconProps;
   /**
    * A RefObject to access the IContextualMenuItem interface. Use this to access the public methods and properties of the component.
    */
@@ -54,9 +81,9 @@ export interface ContextualMenuItemProps extends Omit<IPressableProps, 'onPress'
 }
 
 export interface ContextualMenuItemSlotProps {
-  root: React.PropsWithRef<ViewProps>;
-  stack: ViewProps;
-  icon: ImageProps;
+  root: React.PropsWithRef<IViewProps>;
+  stack: IViewProps;
+  icon: IconProps;
   content: ITextProps;
 }
 

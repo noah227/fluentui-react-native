@@ -1,40 +1,41 @@
+import { Appearance } from 'react-native';
+
 import { ThemeReference } from '@fluentui-react-native/theme';
-import { PartialTheme } from '@fluentui-react-native/theme-types';
-import { NativeEventEmitter, NativeModules } from 'react-native';
-import { BaseAppleThemeMacOS } from './appleTheme.macos';
+import type { Theme } from '@fluentui-react-native/theme-types';
+import { getCurrentAppearance } from '@fluentui-react-native/theming-utils';
+import { AccessibilityInfo } from 'react-native-macos';
 
-// Save this value between calls
-let partialThemeFromNativeModule: PartialTheme;
+import { setIsHighContrast } from './appleHighContrast.macos';
+import { getBaseAppleThemeMacOS } from './appleTheme.macos';
 
-const appleThemeReference = new ThemeReference(BaseAppleThemeMacOS);
+let appleThemeReference: ThemeReference;
 
 export function createAppleTheme(): ThemeReference {
-  const module = NativeModules && NativeModules.MSFAppleThemeModule;
-  if (module) {
-    module.getApplePartialThemeWithCallback((error, applePartialTheme) => {
-      if (error) {
-        console.error(`Error retrieving apple theming module! ${error}`);
-      }
-      partialThemeFromNativeModule = applePartialTheme;
+  appleThemeReference = new ThemeReference({} as Theme, () => {
+    const appearance = Appearance.getColorScheme();
+    const mode = getCurrentAppearance(appearance, 'light');
+    return getBaseAppleThemeMacOS(mode);
+  });
+  // Fetch initial system settings for high contrast mode
+  highContrastHandler();
+  // Invalidate theme and set prop when high contrast setting changes
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  AccessibilityInfo.addEventListener('highContrastChanged', () => {
+    highContrastHandler();
+  });
 
-      // Layer the native apple theming module values on top of the base Apple theme
-      appleThemeReference.update(applePartialTheme);
-    });
-
-    const emitter = new NativeEventEmitter(module);
-
-    const onAppleThemeChanged = (body: PartialTheme) => {
-      partialThemeFromNativeModule = body;
-      appleThemeReference.update(body);
-    };
-
-    emitter.addListener('AppleInterfaceThemeChanged', onAppleThemeChanged);
-    emitter.addListener('AppleColorPreferencesChanged', onAppleThemeChanged);
-  } else {
-    console.warn('Apple native theming module not found');
-  }
-
-  appleThemeReference.update(partialThemeFromNativeModule);
-
+  Appearance.addChangeListener(() => {
+    appleThemeReference.invalidate();
+  });
   return appleThemeReference;
+}
+
+function highContrastHandler() {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  AccessibilityInfo.isHighContrastEnabled().then((isEnabled) => {
+    setIsHighContrast(isEnabled);
+    appleThemeReference.invalidate();
+  });
 }

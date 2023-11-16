@@ -5,11 +5,38 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Attach to packager",
+      "request": "attach",
+      "type": "reactnative",
+      "cwd": "${workspaceFolder}/apps/fluent-tester"
+    },
+    {
+      "name": "Attach to packager (Win32)",
+      "request": "attach",
+      "type": "reactnative",
+      "cwd": "${workspaceFolder}/apps/win32"
+    },
+    {
       "name": "Debug test",
       "type": "node",
       "request": "launch",
       "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
       "cwd": "${workspaceFolder}/packages/just-scripts",
+      "args": ["-i", "--runInBand"],
+      "runtimeArgs": ["--nolazy"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "outFiles": []
+    },
+    {
+      "name": "Debug current folder test",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+      "cwd": "${fileDirname}",
       "args": ["-i", "--runInBand"],
       "runtimeArgs": ["--nolazy"],
       "env": {
@@ -39,7 +66,7 @@
       "type": "node",
       "request": "attach",
       "protocol": "inspector",
-      "port": 9229,
+      "port": 9223,
       "sourceMaps": true
     }
   ]

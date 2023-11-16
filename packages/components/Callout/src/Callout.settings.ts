@@ -1,5 +1,7 @@
-import { calloutName, ICalloutType } from './Callout.types';
-import { IComposeSettings } from '@uifabricshared/foundation-compose';
+import type { IComposeSettings } from '@uifabricshared/foundation-compose';
+
+import type { ICalloutType } from './Callout.types';
+import { calloutName } from './Callout.types';
 
 export const settings: IComposeSettings<ICalloutType> = [
   {
@@ -10,8 +12,8 @@ export const settings: IComposeSettings<ICalloutType> = [
       borderWidth: 1,
       directionalHint: 'bottonLeftEdge',
       gapSpace: 0,
-      minPadding: 0
-    }
+      minPadding: 0,
+    },
   },
-  calloutName
+  calloutName,
 ];

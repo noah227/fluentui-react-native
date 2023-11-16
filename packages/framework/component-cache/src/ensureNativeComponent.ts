@@ -1,4 +1,5 @@
-import { requireNativeComponent, HostComponent } from 'react-native';
+import type { HostComponent } from 'react-native';
+import { requireNativeComponent } from 'react-native';
 
 const cache: { [key: string]: HostComponent<any> } = {};
 
@@ -7,5 +8,8 @@ const cache: { [key: string]: HostComponent<any> } = {};
  * @param name - name of the component to retrieve from the cache
  */
 export function ensureNativeComponent<T>(name: string): HostComponent<T> {
-  return cache[name] || requireNativeComponent(name);
+  if (!cache[name]) {
+    cache[name] = requireNativeComponent<T>(name);
+  }
+  return cache[name];
 }

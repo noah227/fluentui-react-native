@@ -1,6 +1,6 @@
 {
   "name": "@fluentui/react-native",
-  "version": "0.23.3",
+  "version": "0.39.0",
   "description": "A react-native component library that implements the Fluent Design System.",
   "repository": {
     "type": "git",
@@ -16,47 +16,63 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "fluentui-scripts build",
-    "bundle": "fluentui-scripts bundle",
     "clean": "fluentui-scripts clean",
-    "code-style": "fluentui-scripts code-style",
     "depcheck": "fluentui-scripts depcheck",
     "just": "fluentui-scripts",
     "lint": "fluentui-scripts eslint",
     "start:tester": "react-native start --projectRoot ./src",
     "start-test": "fluentui-scripts jest-watch",
     "test": "fluentui-scripts jest",
-    "update-api": "fluentui-scripts update-api-extractor",
     "update-snapshots": "fluentui-scripts jest -u",
-    "verify-api": "fluentui-scripts verify-api-extractor"
+    "prettier": "fluentui-scripts prettier",
+    "prettier-fix": "fluentui-scripts prettier --fix true"
   },
   "dependencies": {
-    "@fluentui-react-native/interactive-hooks": ">=0.9.0 <1.0.0",
-    "@fluentui-react-native/button": ">=0.14.3 <1.0.0",
-    "@fluentui-react-native/callout": ">=0.14.1 <1.0.0",
-    "@fluentui-react-native/checkbox": ">=0.10.1 <1.0.0",
-    "@fluentui-react-native/contextual-menu": "0.7.1",
-    "@fluentui-react-native/focus-trap-zone": ">=0.7.0 <1.0.0",
-    "@fluentui-react-native/focus-zone": ">=0.5.0 <1.0.0",
-    "@fluentui-react-native/link": ">=0.12.1 <1.0.0",
-    "@fluentui-react-native/persona": ">=0.9.1 <1.0.0",
-    "@fluentui-react-native/persona-coin": ">=0.7.1 <1.0.0",
-    "@fluentui-react-native/pressable": ">=0.6.0 <1.0.0",
-    "@fluentui-react-native/radio-group": ">=0.9.1 <1.0.0",
-    "@fluentui-react-native/separator": ">=0.9.1 <1.0.0",
-    "@fluentui-react-native/shimmer": ">=0.6.3 <1.0.0",
-    "@fluentui-react-native/text": ">=0.9.1 <1.0.0"
+    "@fluentui-react-native/button": "0.36.0",
+    "@fluentui-react-native/callout": "0.25.0",
+    "@fluentui-react-native/checkbox": "0.22.0",
+    "@fluentui-react-native/contextual-menu": "0.23.0",
+    "@fluentui-react-native/focus-trap-zone": "0.11.0",
+    "@fluentui-react-native/focus-zone": "0.16.0",
+    "@fluentui-react-native/interactive-hooks": "0.25.0",
+    "@fluentui-react-native/link": "0.21.0",
+    "@fluentui-react-native/menu-button": "0.12.0",
+    "@fluentui-react-native/persona": "0.15.0",
+    "@fluentui-react-native/persona-coin": "0.14.0",
+    "@fluentui-react-native/pressable": "0.11.0",
+    "@fluentui-react-native/radio-group": "0.20.0",
+    "@fluentui-react-native/separator": "0.17.0",
+    "@fluentui-react-native/tabs": "0.14.0",
+    "@fluentui-react-native/text": "0.22.0"
   },
   "devDependencies": {
-    "@types/react-native": "^0.63.0",
-    "@uifabricshared/build-native": "^0.1.1",
-    "@uifabricshared/eslint-config-rules": "^0.1.1",
-    "react": "16.13.1",
-    "react-native": "^0.63.4"
+    "@fluentui-react-native/eslint-config-rules": "^0.1.1",
+    "@fluentui-react-native/scripts": "^0.1.1",
+    "@react-native/metro-config": "^0.72.0",
+    "react": "18.2.0",
+    "react-native": "^0.72.0"
   },
   "peerDependencies": {
-    "react": ">=16.13.1",
-    "react-native": ">=0.63.4"
+    "react": "18.2.0",
+    "react-native": "^0.72.0"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "rnx-kit": {
+    "kitType": "library",
+    "alignDeps": {
+      "presets": [
+        "microsoft/react-native"
+      ],
+      "requirements": [
+        "react-native@0.72"
+      ],
+      "capabilities": [
+        "core",
+        "core-android",
+        "core-ios",
+        "react"
+      ]
+    }
+  }
 }

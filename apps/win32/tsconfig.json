@@ -1,12 +1,12 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "@fluentui-react-native/scripts/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "importHelpers": true,
     "paths": {
       "*": ["*", "*.win32"],
       "src/*": ["./src/*"]
     },
-    "types": ["@wdio/sync", "@wdio/jasmine-framework", "node", "@types/jasmine"]
   },
-  "include": ["src", "../fluent-tester/src"]
+  "include": ["src"]
 }

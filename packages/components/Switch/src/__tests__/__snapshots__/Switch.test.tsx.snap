@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch Default 1`] = `
+<View
+  accessibilityActions={
+    [
+      {
+        "name": "Toggle",
+      },
+    ]
+  }
+  accessibilityLabel="Default Switch"
+  accessibilityRole="switch"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onAccessibilityAction={[Function]}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "alignSelf": "flex-start",
+      "borderColor": undefined,
+      "borderRadius": undefined,
+      "borderWidth": undefined,
+      "flexDirection": "row-reverse",
+    }
+  }
+  switchAnimationStyles={
+    {
+      "thumbAnimatedStyle": {
+        "transform": [
+          {
+            "translateX": 0,
+          },
+        ],
+      },
+      "trackBackgroundStyle": {
+        "backgroundColor": "rgba(15, 108, 189, 1)",
+      },
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#242424",
+        "flexShrink": 1,
+        "fontFamily": "Segoe UI",
+        "fontSize": 13,
+        "fontWeight": "400",
+        "margin": 0,
+      }
+    }
+  >
+    Default Switch
+  </Text>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row-reverse",
+      }
+    }
+  >
+    <View
+      collapsable={false}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "rgba(15, 108, 189, 1)",
+          "borderRadius": 100,
+          "flexDirection": "row",
+          "height": 32,
+          "marginRight": 8,
+          "width": 52,
+        }
+      }
+    >
+      <View
+        animationClass="Ribbon_SwitchThumb"
+        collapsable={false}
+        style={
+          {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 100,
+            "elevation": 8,
+            "height": 26,
+            "margin": 3,
+            "transform": [
+              {
+                "translateX": 0,
+              },
+            ],
+            "width": 26,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Switch Disabled 1`] = `
+<View
+  accessibilityActions={
+    [
+      {
+        "name": "Toggle",
+      },
+    ]
+  }
+  accessibilityLabel="Default Switch Disabled"
+  accessibilityRole="switch"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": true,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={false}
+  collapsable={false}
+  focusable={false}
+  onAccessibilityAction={[Function]}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "alignSelf": "flex-start",
+      "borderColor": undefined,
+      "borderRadius": undefined,
+      "borderWidth": undefined,
+      "flexDirection": "row-reverse",
+    }
+  }
+  switchAnimationStyles={
+    {
+      "thumbAnimatedStyle": {
+        "transform": [
+          {
+            "translateX": 0,
+          },
+        ],
+      },
+      "trackBackgroundStyle": {
+        "backgroundColor": "rgba(240, 240, 240, 1)",
+      },
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#e0e0e0",
+        "flexShrink": 1,
+        "fontFamily": "Segoe UI",
+        "fontSize": 13,
+        "fontWeight": "400",
+        "margin": 0,
+      }
+    }
+  >
+    Default Switch Disabled
+  </Text>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row-reverse",
+      }
+    }
+  >
+    <View
+      collapsable={false}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "rgba(240, 240, 240, 1)",
+          "borderRadius": 100,
+          "flexDirection": "row",
+          "height": 32,
+          "marginRight": 8,
+          "width": 52,
+        }
+      }
+    >
+      <View
+        animationClass="Ribbon_SwitchThumb"
+        collapsable={false}
+        style={
+          {
+            "backgroundColor": "#ffffff",
+            "borderRadius": 100,
+            "elevation": 0,
+            "height": 26,
+            "margin": 3,
+            "transform": [
+              {
+                "translateX": 0,
+              },
+            ],
+            "width": 26,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

@@ -1,2 +1,2 @@
-const { configureReactNativeJest } = require('@uifabricshared/build-native');
-module.exports = configureReactNativeJest('android');
+const { configureReactNativeJest } = require('@fluentui-react-native/scripts');
+module.exports = configureReactNativeJest('win32');

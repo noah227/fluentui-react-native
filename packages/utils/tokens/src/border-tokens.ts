@@ -1,21 +1,23 @@
-import { ViewStyle } from 'react-native';
-import { IOperationSet } from '@uifabricshared/foundation-tokens';
-import { ITheme } from '@uifabricshared/theming-ramp';
+import type { ViewStyle, ColorValue, AnimatableNumericValue } from 'react-native';
+
+import type { Theme } from '@fluentui-react-native/theme-types';
+
 import { getPaletteFromTheme } from './color-tokens';
+import type { OperationSet } from './token.types';
 import { tokenBuilder } from './tokenBuilder';
 
 export interface IBorderTokens {
-  borderColor?: string;
+  borderColor?: ColorValue;
   borderWidth?: number;
-  borderRadius?: number;
+  borderRadius?: AnimatableNumericValue;
   borderStyle?: ViewStyle['borderStyle'];
 }
 
-export const borderTokens: IOperationSet<IBorderTokens, ITheme> = [
+export const borderTokens: OperationSet<IBorderTokens, Theme> = [
   { source: 'borderColor', lookup: getPaletteFromTheme },
   { source: 'borderWidth' },
   { source: 'borderRadius' },
-  { source: 'borderStyle' }
+  { source: 'borderStyle' },
 ];
 
 export const borderStyles = tokenBuilder<IBorderTokens>('borderColor', 'borderRadius', 'borderStyle', 'borderWidth');

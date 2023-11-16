@@ -1,9 +1,11 @@
+import type { ColorValue } from 'react-native';
+
 import { flattenStyle, mergeAndFlattenStyles, mergeStyles } from './mergeStyles';
-import { StyleProp } from './mergeStyles.types';
+import type { StyleProp } from './mergeStyles.types';
 
 interface IFakeStyle {
-  backgroundColor?: string;
-  color?: string;
+  backgroundColor?: ColorValue;
+  color?: ColorValue;
   fontFamily?: string;
   borderWidth?: number;
   ':hover'?: IFakeStyle;
